@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { pool } from "../db.js";
+import { pool } from "./server.js";
 
 const router = Router();
 
@@ -39,3 +39,5 @@ router.get("/", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
+
+export default router;

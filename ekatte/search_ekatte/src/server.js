@@ -1,17 +1,9 @@
 import express from 'express';
-import cors from 'cors';
 import dotenv from 'dotenv';
-import searchRouter from './routes/search.js';
+import { Pool } from 'pg';
+import router from './routes/index.js';
 
-const { Pool } = pkg;
-
-const app = express();
-app.use(cors());
-app.use(express.json());
-
-app.use('/search', searchRouter);
-
-dotenv.config();
+dotenv.config({path: '.../.env'});
 
 export const pool = new Pool({
   user: process.env.DB_USER,
@@ -20,6 +12,11 @@ export const pool = new Pool({
   password: process.env.DB_PASSWORD,
   port: Number(process.env.DB_PORT)
 });
+
+const app = express();
+app.use(express.json());
+
+app.use('/api', router);
 
 const port = Number(process.env.APP_PORT) || 3000;
 
