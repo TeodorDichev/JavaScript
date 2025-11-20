@@ -81,14 +81,15 @@ async function insertAltitude(row) {
 async function insertSettlement(row) {
   const sql = `
     INSERT INTO SETTLEMENT(
-      EKATTE, NAME, SETTLEMENT_CATEGORY, ALTITUDE_ID, SETTLEMENT_TYPE_ID, MAYORALITY_ID, MUNICIPALITY_ID
+      EKATTE, NAME, TRANSLITERATION, SETTLEMENT_CATEGORY, ALTITUDE_ID, SETTLEMENT_TYPE_ID, MAYORALITY_ID, MUNICIPALITY_ID
     )
-    VALUES ($1,$2,$3,$4,$5,$6,$7)
+    VALUES ($1,$2,$3,$4,$5,$6,$7,$8)
     ON CONFLICT (EKATTE) DO NOTHING
   `;
   await client.query(sql, [
     row.ekatte,
     row.name,
+    row.transliteration,
     row.settlement_category,
     row.altitude_id,
     row.settlement_type_id,
@@ -190,9 +191,10 @@ export async function jsonImport(outputDir) {
           altitude_id: s["altitude"],
           mayorality_id: normalizeMayoralityId(s["kmetstvo"]),
           municipality_id: s["obshtina"],
+          transliteration: s["name_en"]
         })),
       insertSettlement,
-      "Settlements batch"
+      "Settlements"
     );
 
     console.log("EKATTE import complete");

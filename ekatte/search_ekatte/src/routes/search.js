@@ -20,11 +20,20 @@ router.get("/", async (req, res) => {
       JOIN municipality mu ON s.municipality_id = mu.municipality_id
       JOIN region r ON mu.region_id = r.region_id
       WHERE 
-          s.ekatte ILIKE '%' || $1 || '%'
-       OR s.name ILIKE '%' || $1 || '%'
-       OR ma.name ILIKE '%' || $1 || '%'
-       OR mu.name ILIKE '%' || $1 || '%'
-       OR r.name ILIKE '%' || $1 || '%';
+          $1 = '' OR
+          s.ekatte ILIKE '%' || $1 || '%' OR
+          s.name ILIKE '%' || $1 || '%' OR
+          s.transliteration ILIKE '%' || $1 || '%' OR
+          ma.name ILIKE '%' || $1 || '%' OR
+          ma.mayorality_id ILIKE '%' || $1 || '%' OR
+          ma.transliteration ILIKE '%' || $1 || '%' OR
+          mu.municipality_id ILIKE '%' || $1 || '%' OR
+          mu.name ILIKE '%' || $1 || '%' OR
+          mu.transliteration ILIKE '%' || $1 || '%' OR
+          r.name ILIKE '%' || $1 || '%' OR
+          r.transliteration ILIKE '%' || $1 || '%' OR
+          r.region_id ILIKE '%' || $1 || '%'
+      ORDER BY s.name ASC;
       `,
       [q]
     );

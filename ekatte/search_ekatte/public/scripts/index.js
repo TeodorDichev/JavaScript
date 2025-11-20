@@ -9,26 +9,24 @@ document.addEventListener("DOMContentLoaded", () => {
     data.forEach((item) => {
       const row = document.createElement("tr");
       row.innerHTML = `
-    <td>${item.id}</td>
-    <td>${item.settlement}</td>
-    <td>${item.mayorality || ""}</td>
-    <td>${item.municipality}</td>
-    <td>${item.region}</td>
-    `;
-
+        <td>${item.id}</td>
+        <td>${item.settlement}</td>
+        <td>${item.mayorality || ""}</td>
+        <td>${item.municipality}</td>
+        <td>${item.region}</td>
+      `;
       tableBody.appendChild(row);
     });
 
     const resultDiv = document.getElementById("result-count");
-    resultDiv.innerHTML = '';
     resultDiv.innerHTML = `Намерени резултати: ${data.length}`;
   }
 
   async function fetchData(query) {
     try {
-      const res = await fetch(
-        `${API_URL}/search?q=${encodeURIComponent(query)}`
-      );
+      const q = query.trim();
+      const res = await fetch(`${API_URL}/search?q=${encodeURIComponent(q)}`);
+
       if (res.ok) {
         const data = await res.json();
         renderTable(data.rows);
@@ -43,4 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
     clearTimeout(timeout);
     timeout = setTimeout(() => fetchData(searchInput.value), 500);
   });
+
+  fetchData("");
 });
