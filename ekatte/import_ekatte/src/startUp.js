@@ -2,9 +2,8 @@ import fs from "fs";
 import path from "path";
 import dotenv from 'dotenv';
 import readline from "readline";
-import { csvImport } from "./csvImport.js";
 import { jsonImport } from "./jsonImport.js";
-import { xlsxImport } from "./xlsxImport.js";
+import { excelImport } from "./excelImport.js";
 import { Client } from 'pg';
 
 dotenv.config({path: '.env'});
@@ -23,8 +22,7 @@ const files = fs.readdirSync(folder);
 const fileTypes = { csv: [], xlsx: [], json: [] };
 files.forEach((f) => {
   const ext = path.extname(f).toLowerCase();
-  if (ext === ".csv") fileTypes.csv.push(f);
-  else if (ext === ".xlsx") fileTypes.xlsx.push(f);
+  if (ext === ".xlsx") fileTypes.xlsx.push(f);
   else if (ext === ".json") fileTypes.json.push(f);
 });
 
@@ -43,7 +41,7 @@ Object.entries(fileTypes).forEach(([key, value]) => {
   console.log(key, value);
 });
 
-rl.question("Enter file type to import (csv, xlsx, json): ", async (type) => {
+rl.question("Enter file type to import (xlsx, json): ", async (type) => {
   type = type.trim().toLowerCase();
   if (!fileTypes[type] || fileTypes[type].length === 0) {
     console.log("No files of this type found.");
@@ -51,11 +49,8 @@ rl.question("Enter file type to import (csv, xlsx, json): ", async (type) => {
     console.log(`Files to import (${type}):`);
     
     switch (type) {
-      case "csv":
-        await csvImport();
-        break;
       case "xlsx":
-        await xlsxImport();
+        await excelImport(folder);
         break;
       case "json":
         await jsonImport(folder);
