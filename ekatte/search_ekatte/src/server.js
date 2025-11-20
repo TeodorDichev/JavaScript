@@ -1,8 +1,7 @@
-import express from 'express';
 import dotenv from 'dotenv';
+import http from "http";
 import { Pool } from 'pg';
-import router from './routes/router.js';
-import cors from 'cors';
+import { router } from './routes/router.js';
 
 dotenv.config({path: '.env'});
 
@@ -14,14 +13,23 @@ export const pool = new Pool({
   port: Number(process.env.DB_PORT)
 });
 
-const app = express();
-app.use(cors());
-app.use(express.json());
+const PORT = Number(process.env.APP_PORT) || 3000;
 
-app.use('/api', router);
+const server = http.createServer(async (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:8000");
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-const port = Number(process.env.APP_PORT) || 3000;
+  if (req.method === "OPTIONS") {
+    res.writeHead(204);
+    res.end();
+    return;
+  }
 
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
+  await router(req, res);
 });
+
+server.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
+

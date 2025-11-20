@@ -1,10 +1,9 @@
-import { Router } from "express";
 import { pool } from "../server.js";
 
-const router = Router();
-
-router.get("/", async (req, res) => {
-  const q = req.query.q?.toLowerCase() || "";
+export async function searchHandler(req, res, parsedUrl) {
+  console.log(parsedUrl);
+  const query = parsedUrl.searchParams;
+  const q = (query.get("q") || "").toLowerCase(); 
 
   try {
     const result = await pool.query(
@@ -38,14 +37,11 @@ router.get("/", async (req, res) => {
       [q]
     );
 
-    res.json({
-      count: result.rowCount,
-      rows: result.rows,
-    });
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ count: result.rowCount, rows: result.rows }));
   } catch (err) {
     console.error("SQL error:", err);
-    res.status(500).json({ error: "Internal server error" });
+    res.writeHead(500, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ error: "Internal server error" }));
   }
-});
-
-export default router;
+}

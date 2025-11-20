@@ -1,8 +1,16 @@
-import { Router } from "express";
-import search from "./search.js";
+import { searchHandler } from "./search.js";
+import { URL } from "url";
 
-const router = Router();
+export async function router(req, res) {
+  const base = `http://${req.headers.host}`;
+  const parsedUrl = new URL(req.url, base);
+  const pathname = parsedUrl.pathname;
 
-router.use("/search", search);
+  if (pathname === "/api/search" && req.method === "GET") {
+    await searchHandler(req, res, parsedUrl);
+    return;
+  }
 
-export default router;
+  res.writeHead(404, { "Content-Type": "text/plain" });
+  res.end("Not Found");
+}
