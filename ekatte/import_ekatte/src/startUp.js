@@ -2,14 +2,14 @@ import fs from "fs";
 import path from "path";
 import dotenv from 'dotenv';
 import readline from "readline";
-import { csvImport } from "./csvImport";
-import { jsonImport } from "./jsonImport";
-import { xlsxImport } from "./xlsxImport";
-import { Pool } from 'pg';
+import { csvImport } from "./csvImport.js";
+import { jsonImport } from "./jsonImport.js";
+import { xlsxImport } from "./xlsxImport.js";
+import { Client } from 'pg';
 
-dotenv.config({path: '.../.env'});
+dotenv.config({path: '.env'});
 
-export const pool = new Pool({
+export const client = new Client({
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
   database: process.env.DB_NAME,
@@ -17,7 +17,7 @@ export const pool = new Pool({
   port: Number(process.env.DB_PORT)
 });
 
-const folder = "./data";
+const folder = "./import_ekatte/data";
 const files = fs.readdirSync(folder);
 
 const fileTypes = { csv: [], xlsx: [], json: [] };
@@ -38,23 +38,27 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-rl.question("Enter file type to import (csv, xlsx, json): ", (type) => {
+console.log("Files found: ")
+Object.entries(fileTypes).forEach(([key, value]) => {
+  console.log(key, value);
+});
+
+rl.question("Enter file type to import (csv, xlsx, json): ", async (type) => {
   type = type.trim().toLowerCase();
   if (!fileTypes[type] || fileTypes[type].length === 0) {
     console.log("No files of this type found.");
   } else {
     console.log(`Files to import (${type}):`);
-    fileTypes[type].forEach((f) => console.log(f));
-
+    
     switch (type) {
       case "csv":
-        csvImport();
+        await csvImport();
         break;
       case "xlsx":
-        xlsxImport();
+        await xlsxImport();
         break;
       case "json":
-        jsonImport();
+        await jsonImport(folder);
         break;
     }
   }

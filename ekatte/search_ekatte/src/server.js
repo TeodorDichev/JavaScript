@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import { Pool } from 'pg';
 import router from './routes/index.js';
 
-dotenv.config({path: '.../.env'});
+dotenv.config({path: '.env'});
 
 export const pool = new Pool({
   user: process.env.DB_USER,
