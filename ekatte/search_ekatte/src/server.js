@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import { Pool } from 'pg';
 import router from './routes/index.js';
+import cors from 'cors';
 
 dotenv.config({path: '.env'});
 
@@ -14,6 +15,7 @@ export const pool = new Pool({
 });
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 app.use('/api', router);
