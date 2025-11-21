@@ -1,9 +1,8 @@
 import { pool } from "../server.js";
 
-export async function searchHandler(req, res, parsedUrl) {
-  console.log(parsedUrl);
+export async function searchHandler(res, parsedUrl) {
   const query = parsedUrl.searchParams;
-  const q = (query.get("q") || "").toLowerCase(); 
+  const q = (query.get("q")); 
 
   try {
     const result = await pool.query(

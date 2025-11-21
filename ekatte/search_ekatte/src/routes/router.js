@@ -7,7 +7,7 @@ export async function router(req, res) {
   const pathname = parsedUrl.pathname;
 
   if (pathname === "/api/search" && req.method === "GET") {
-    await searchHandler(req, res, parsedUrl);
+    await searchHandler(res, parsedUrl);
     return;
   }
 
