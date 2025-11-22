@@ -1,12 +1,10 @@
 import { pool } from "../server.js";
 
 export async function searchHandler(res, parsedUrl) {
-  const query = parsedUrl.searchParams;
-  const q = (query.get("q")); 
+  const q = parsedUrl.searchParams.get("q")?.trim();
 
   try {
-    const result = await pool.query(
-      `
+    let sql = `
       SELECT 
           s.ekatte AS id,
           s.name AS settlement,
@@ -17,8 +15,14 @@ export async function searchHandler(res, parsedUrl) {
       LEFT JOIN mayorality ma ON s.mayorality_id = ma.mayorality_id
       JOIN municipality mu ON s.municipality_id = mu.municipality_id
       JOIN region r ON mu.region_id = r.region_id
-      WHERE 
-          $1 = '' OR
+    `;
+
+    const params = [];
+    let name = "search-settlements-noquery";
+
+    if (q) {
+      sql += `
+        WHERE 
           s.ekatte ILIKE '%' || $1 || '%' OR
           s.name ILIKE '%' || $1 || '%' OR
           s.transliteration ILIKE '%' || $1 || '%' OR
@@ -31,10 +35,18 @@ export async function searchHandler(res, parsedUrl) {
           r.name ILIKE '%' || $1 || '%' OR
           r.transliteration ILIKE '%' || $1 || '%' OR
           r.region_id ILIKE '%' || $1 || '%'
-      ORDER BY s.name ASC;
-      `,
-      [q]
-    );
+      `;
+      params.push(q);
+      name = "search-settlements"; 
+    }
+
+    sql += ` ORDER BY s.name ASC;`;
+
+    const result = await pool.query({
+      name, 
+      text: sql,
+      values: params,
+    });
 
     res.writeHead(200, { "Content-Type": "application/json" });
     res.end(JSON.stringify({ count: result.rowCount, rows: result.rows }));

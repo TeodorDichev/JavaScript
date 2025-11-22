@@ -41,5 +41,3 @@ export async function batchInsert(table, columns, rows) {
     console.error(`Failed to insert into ${table}, rolled back:`, err.message);
   }
 }
-
-
