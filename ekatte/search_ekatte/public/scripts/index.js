@@ -1,14 +1,12 @@
 const API_URL = "http://localhost:3000/api";
 
-async function fetchData(query) {
-  const res = await fetch(
-    `${API_URL}/search?q=${encodeURIComponent(query.trim())}`
-  );
+export async function fetchData(query) {
+  const res = await fetch(`${API_URL}/search?q=${encodeURIComponent(query.trim())}`);
   if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
   return res.json();
 }
 
-function renderTable(data) {
+export function renderTable(data) {
   const tableBody = document.querySelector(".result-table tbody");
   tableBody.innerHTML = data
     .map(
@@ -24,15 +22,11 @@ function renderTable(data) {
     )
     .join("");
 
-  document.getElementById(
-    "result-count"
-  ).textContent = `Намерени резултати: ${data.length}`;
+  document.getElementById("result-count").textContent = `Намерени резултати: ${data.length}`;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const input = document.getElementById("search-data");
+export function setupSearchInput(input) {
   let timeout;
-
   input.addEventListener("input", () => {
     clearTimeout(timeout);
     timeout = setTimeout(async () => {
@@ -44,6 +38,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }, 500);
   });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const input = document.getElementById("search-data");
+  setupSearchInput(input);
 
   fetchData("")
     .then((data) => renderTable(data.rows))

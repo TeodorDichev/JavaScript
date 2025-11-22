@@ -12,7 +12,7 @@ vi.mock("../../src/startUp.js", () => ({
   },
 }));
 
-describe("import", () => {
+describe("import common", () => {
   describe("chunkArray", () => {
     it("should split an array into chunks of given size", () => {
       expect(chunkArray([1, 2, 3, 4, 5], 2)).toEqual([[1, 2], [3, 4], [5]]);
@@ -28,11 +28,11 @@ describe("import", () => {
   });
 
   describe("normalizeMayoralityId", () => {
-    it("returns null if mayoralityId ends with '-00'", () => {
+    it("should return null if mayoralityId ends with '-00'", () => {
       expect(normalizeMayoralityId("123-00")).toBeNull();
     });
 
-    it("returns mayoralityId if it does not end with '-00'", () => {
+    it("should return mayoralityId if it does not end with '-00'", () => {
       expect(normalizeMayoralityId("123-01")).toBe("123-01");
     });
   });
@@ -42,12 +42,12 @@ describe("import", () => {
       vi.clearAllMocks();
     });
 
-    it("does nothing if rows is empty", async () => {
+    it("should do nothing if rows is empty", async () => {
       await batchInsert("table", ["col1"], []);
       expect(client.query).not.toHaveBeenCalled();
     });
 
-    it("inserts rows and commits transaction", async () => {
+    it("should insert rows and commits transaction", async () => {
       client.query.mockResolvedValueOnce({});
       client.query.mockResolvedValueOnce({});
       client.query.mockResolvedValueOnce({});
@@ -66,7 +66,7 @@ describe("import", () => {
       expect(client.query).toHaveBeenNthCalledWith(3, "COMMIT");
     });
 
-    it("rolls back if insert fails", async () => {
+    it("should roll back if insert fails", async () => {
       client.query.mockResolvedValueOnce({});
       client.query.mockRejectedValueOnce(new Error("fail"));
       client.query.mockResolvedValueOnce({});

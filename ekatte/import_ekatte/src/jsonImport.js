@@ -3,7 +3,7 @@ import { batchInsert, chunkArray, normalizeMayoralityId } from "./importCommon.j
 import fs from "fs";
 import path from "path";
 
-function transformRegions(regions) {
+export function transformRegions(regions) {
   return regions
     .filter(r => r.oblast)
     .map(r => ({
@@ -16,7 +16,7 @@ function transformRegions(regions) {
     }));
 }
 
-function transformMunicipalities(municipalities) {
+export function transformMunicipalities(municipalities) {
   return municipalities
     .filter(m => m.obshtina)
     .map(m => ({
@@ -27,7 +27,7 @@ function transformMunicipalities(municipalities) {
     }));
 }
 
-function transformMayoralities(mayoralities) {
+export function transformMayoralities(mayoralities) {
   return mayoralities
     .filter(m => m.kmetstvo)
     .map(m => ({
@@ -38,7 +38,7 @@ function transformMayoralities(mayoralities) {
     }));
 }
 
-function transformSettlements(settlements) {
+export function transformSettlements(settlements) {
   const altitudesMap = new Map();
   const typesMap = new Map();
   const settlementsData = [];
