@@ -10,8 +10,6 @@ export function transformRegions(regions) {
       region_id: r.oblast,
       name: r.name,
       transliteration: r.name_en,
-      nuts1_id: r.nuts1,
-      nuts2_id: r.nuts2,
       nuts3_id: r.nuts3,
     }));
 }
@@ -74,25 +72,24 @@ export function transformSettlements(settlements) {
   return { settlementsData, altitudesData, typesData };
 }
 
-export async function jsonImport({
+export async function jsonImport(
   outputDir,
   dbClient = client,
   insert = batchInsert,
-  readFile = fs.readFileSync,
-}) {
+) {
   await dbClient.connect();
   try {
-    const regions = JSON.parse(readFile(path.join(outputDir, "ek_obl.json")));
-    const municipalities = JSON.parse(readFile(path.join(outputDir, "ek_obst.json")));
-    const mayoralities = JSON.parse(readFile(path.join(outputDir, "ek_kmet.json")));
-    const settlements = JSON.parse(readFile(path.join(outputDir, "ek_atte.json")));
+    const regions = JSON.parse(fs.readFileSync(path.join(outputDir, "ek_obl.json")));
+    const municipalities = JSON.parse(fs.readFileSync(path.join(outputDir, "ek_obst.json")));
+    const mayoralities = JSON.parse(fs.readFileSync(path.join(outputDir, "ek_kmet.json")));
+    const settlements = JSON.parse(fs.readFileSync( path.join(outputDir, "ek_atte.json")));
 
     const regionsData = transformRegions(regions);
     const municipalitiesData = transformMunicipalities(municipalities);
     const mayoralitiesData = transformMayoralities(mayoralities);
     const { settlementsData, altitudesData, typesData } = transformSettlements(settlements);
 
-    await insert("REGION", ["region_id","name","transliteration","nuts1_id","nuts2_id","nuts3_id"], regionsData);
+    await insert("REGION", ["region_id","name","transliteration","nuts3_id"], regionsData);
     await insert("MUNICIPALITY", ["municipality_id","name","transliteration","region_id"], municipalitiesData);
     await insert("MAYORALITY", ["mayorality_id","name","transliteration","municipality_id"], mayoralitiesData);
     await insert("ALTITUDE", ["altitude_id","altitude_description"], altitudesData);

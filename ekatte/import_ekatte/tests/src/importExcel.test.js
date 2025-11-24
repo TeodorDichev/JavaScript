@@ -32,11 +32,9 @@ describe("import excel", () => {
         "Код на областта",
         "Име на областта",
         "Транслитерация",
-        "NUTS1",
-        "NUTS2",
         "NUTS3",
       ]),
-      createMockRow(["01", "Region1", "RegionOne", "N1", "N2", "N3"]),
+      createMockRow(["01", "Region1", "RegionOne", "N3"]),
     ]);
 
     const result = transformExcelRegions(mockSheet);
@@ -46,8 +44,6 @@ describe("import excel", () => {
         region_id: "01",
         name: "Region1",
         transliteration: "RegionOne",
-        nuts1_id: "N1",
-        nuts2_id: "N2",
         nuts3_id: "N3",
       },
     ]);

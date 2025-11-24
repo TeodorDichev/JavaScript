@@ -29,6 +29,30 @@ describe("search", () => {
     );
   });
 
+it("should return no rows and count 0 when query is successful and db is epty", async () => {
+    const res = {
+      writeHead: vi.fn(),
+      end: vi.fn(),
+    };
+
+    pool.query.mockResolvedValue({
+      rowCount: 0,
+      rows: [],
+    });
+
+    await searchHandler(
+      res,
+      new URL("http://localhost:3000/api/search?q=test")
+    );
+
+    expect(res.writeHead).toHaveBeenCalledWith(200, {
+      "Content-Type": "application/json",
+    });
+    expect(res.end).toHaveBeenCalledWith(
+      JSON.stringify({ count: 0, rows: [] })
+    );
+  });
+
   it("should return json with internal server error when query is unsuccessful", async () => {
     const res = {
       writeHead: vi.fn(),

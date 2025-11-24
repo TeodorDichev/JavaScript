@@ -14,8 +14,6 @@ describe("import json", () => {
         oblast: "01",
         name: "Region1",
         name_en: "RegionOne",
-        nuts1: "N1",
-        nuts2: "N2",
         nuts3: "N3",
       },
       { name: "Region2" },
@@ -27,8 +25,6 @@ describe("import json", () => {
         region_id: "01",
         name: "Region1",
         transliteration: "RegionOne",
-        nuts1_id: "N1",
-        nuts2_id: "N2",
         nuts3_id: "N3",
       },
     ]);

@@ -17,8 +17,6 @@ export function transformExcelRegions(sheet) {
       region_id: regionId,
       name: row.getCell(cols["Име на областта"]).value,
       transliteration: row.getCell(cols["Транслитерация"]).value,
-      nuts1_id: row.getCell(cols["NUTS1"]).value,
-      nuts2_id: row.getCell(cols["NUTS2"]).value,
       nuts3_id: row.getCell(cols["NUTS3"]).value,
     });
   });
@@ -109,12 +107,12 @@ export function transformExcelSettlements(sheet) {
   return { settlementsData, altitudesData, typesData };
 }
 
-export async function excelImport({
+export async function excelImport(
   outputDir,
   dbClient = client,
   insert = batchInsert,
   Workbook = ExcelJS.Workbook,
-}) {
+) {
   await dbClient.connect();
 
   try {
@@ -134,7 +132,7 @@ export async function excelImport({
     const mayoralitiesData = transformExcelMayoralities(mayoralitiesSheet);
     const { settlementsData, altitudesData, typesData } = transformExcelSettlements(settlementsSheet);
 
-    await insert("REGION", ["region_id","name","transliteration","nuts1_id","nuts2_id","nuts3_id"], regionsData);
+    await insert("REGION", ["region_id","name","transliteration","nuts3_id"], regionsData);
     await insert("MUNICIPALITY", ["municipality_id","name","transliteration","region_id"], municipalitiesData);
     await insert("MAYORALITY", ["mayorality_id","name","transliteration","municipality_id"], mayoralitiesData);
     await insert("ALTITUDE", ["altitude_id","altitude_description"], altitudesData);
