@@ -1,24 +1,28 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { searchHandler } from "../../../src/routes/search.js";
-import { pool } from "../../../src/server.js";
 
-vi.mock("../../../src/server.js", () => ({ pool: { query: vi.fn() } }));
-
-describe("search", () => {
+describe("searchHandler", () => {
   let res;
+  let mockPool;
 
   beforeEach(() => {
-    res = { writeHead: vi.fn(), end: vi.fn() };
-    vi.clearAllMocks();
+    res = {
+      writeHead: vi.fn(),
+      end: vi.fn(),
+    };
+
+    mockPool = {
+      query: vi.fn(),
+    };
   });
 
   it("should return rows and count when query is successful", async () => {
-    pool.query.mockResolvedValue({
+    mockPool.query.mockResolvedValue({
       rowCount: 1,
       rows: [{ id: "1", settlement: "Test" }],
     });
 
-    await searchHandler(res, new URL("http://localhost:3000/api/search?q=test"));
+    await searchHandler(res, new URL("http://localhost:3000/api/search?q=test"), mockPool);
 
     expect(res.writeHead).toHaveBeenCalledWith(200, {
       "Content-Type": "application/json",
@@ -29,9 +33,9 @@ describe("search", () => {
   });
 
   it("should return empty result when database returns no rows", async () => {
-    pool.query.mockResolvedValue({ rowCount: 0, rows: [] });
+    mockPool.query.mockResolvedValue({ rowCount: 0, rows: [] });
 
-    await searchHandler(res, new URL("http://localhost:3000/api/search?q=test"));
+    await searchHandler(res, new URL("http://localhost:3000/api/search?q=test"), mockPool);
 
     expect(res.writeHead).toHaveBeenCalledWith(200, {
       "Content-Type": "application/json",
@@ -42,9 +46,9 @@ describe("search", () => {
   });
 
   it("should return internal server error when query fails", async () => {
-    pool.query.mockRejectedValue(new Error("DB error"));
+    mockPool.query.mockRejectedValue(new Error("DB error"));
 
-    await searchHandler(res, new URL("http://localhost:3000/api/search?q=test"));
+    await searchHandler(res, new URL("http://localhost:3000/api/search?q=test"), mockPool);
 
     expect(res.writeHead).toHaveBeenCalledWith(500, {
       "Content-Type": "application/json",
@@ -55,44 +59,38 @@ describe("search", () => {
   });
 
   it("should call query without ILIKE when q is empty", async () => {
-    const mockQuery = vi.spyOn(pool, "query").mockResolvedValue({
+    mockPool.query.mockResolvedValue({
       rowCount: 1,
       rows: [{ id: "123", settlement: "Test" }],
     });
 
-    await searchHandler(res, new URL("http://localhost:3000/api/search?q="));
+    await searchHandler(res, new URL("http://localhost:3000/api/search?q="), mockPool);
 
-    expect(mockQuery).toHaveBeenCalledWith({
+    expect(mockPool.query).toHaveBeenCalledWith({
       name: "search-settlements-noquery",
       text: expect.not.stringContaining("WHERE"),
       values: [],
     });
-
     expect(res.writeHead).toHaveBeenCalledWith(200, {
       "Content-Type": "application/json",
     });
-
-    mockQuery.mockRestore();
   });
 
   it("should call query with ILIKE when q is not empty", async () => {
-    const mockQuery = vi.spyOn(pool, "query").mockResolvedValue({
+    mockPool.query.mockResolvedValue({
       rowCount: 1,
       rows: [{ id: "123", settlement: "Test" }],
     });
 
-    await searchHandler(res, new URL("http://localhost:3000/api/search?q=test"));
+    await searchHandler(res, new URL("http://localhost:3000/api/search?q=test"), mockPool);
 
-    expect(mockQuery).toHaveBeenCalledWith({
+    expect(mockPool.query).toHaveBeenCalledWith({
       name: "search-settlements",
       text: expect.stringContaining("WHERE"),
       values: ["test"],
     });
-
     expect(res.writeHead).toHaveBeenCalledWith(200, {
       "Content-Type": "application/json",
     });
-
-    mockQuery.mockRestore();
   });
 });

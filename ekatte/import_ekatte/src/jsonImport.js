@@ -77,7 +77,6 @@ export async function jsonImport(
   dbClient = client,
   insert = batchInsert,
 ) {
-  await dbClient.connect();
   try {
     const regions = JSON.parse(fs.readFileSync(path.join(outputDir, "ek_obl.json")));
     const municipalities = JSON.parse(fs.readFileSync(path.join(outputDir, "ek_obst.json")));
@@ -89,25 +88,24 @@ export async function jsonImport(
     const mayoralitiesData = transformMayoralities(mayoralities);
     const { settlementsData, altitudesData, typesData } = transformSettlements(settlements);
 
-    await insert("REGION", ["region_id","name","transliteration","nuts3_id"], regionsData);
-    await insert("MUNICIPALITY", ["municipality_id","name","transliteration","region_id"], municipalitiesData);
-    await insert("MAYORALITY", ["mayorality_id","name","transliteration","municipality_id"], mayoralitiesData);
-    await insert("ALTITUDE", ["altitude_id","altitude_description"], altitudesData);
-    await insert("SETTLEMENT_TYPE", ["settlement_type_id","settlement_type_description"], typesData);
+    await insert("REGION", ["region_id","name","transliteration","nuts3_id"], regionsData, dbClient);
+    await insert("MUNICIPALITY", ["municipality_id","name","transliteration","region_id"], municipalitiesData, dbClient);
+    await insert("MAYORALITY", ["mayorality_id","name","transliteration","municipality_id"], mayoralitiesData, dbClient);
+    await insert("ALTITUDE", ["altitude_id","altitude_description"], altitudesData, dbClient);
+    await insert("SETTLEMENT_TYPE", ["settlement_type_id","settlement_type_description"], typesData, dbClient);
 
     const settlementChunks = chunkArray(settlementsData, 500);
     for (const chunk of settlementChunks) {
       await insert(
         "SETTLEMENT",
         ["ekatte","name","transliteration","settlement_category","altitude_id","settlement_type_id","mayorality_id","municipality_id"],
-        chunk
+        chunk,
+        dbClient
       );
     }
 
     console.log("EKATTE import complete");
   } catch (err) {
     console.error("Import failed:", err);
-  } finally {
-    await dbClient.end();
   }
 }

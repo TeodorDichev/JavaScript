@@ -113,8 +113,6 @@ export async function excelImport(
   insert = batchInsert,
   Workbook = ExcelJS.Workbook,
 ) {
-  await dbClient.connect();
-
   try {
     const loadSheet = async (fileName) => {
       const wb = new Workbook();
@@ -132,25 +130,24 @@ export async function excelImport(
     const mayoralitiesData = transformExcelMayoralities(mayoralitiesSheet);
     const { settlementsData, altitudesData, typesData } = transformExcelSettlements(settlementsSheet);
 
-    await insert("REGION", ["region_id","name","transliteration","nuts3_id"], regionsData);
-    await insert("MUNICIPALITY", ["municipality_id","name","transliteration","region_id"], municipalitiesData);
-    await insert("MAYORALITY", ["mayorality_id","name","transliteration","municipality_id"], mayoralitiesData);
-    await insert("ALTITUDE", ["altitude_id","altitude_description"], altitudesData);
-    await insert("SETTLEMENT_TYPE", ["settlement_type_id","settlement_type_description"], typesData);
+    await insert("REGION", ["region_id","name","transliteration","nuts3_id"], regionsData, dbClient);
+    await insert("MUNICIPALITY", ["municipality_id","name","transliteration","region_id"], municipalitiesData, dbClient);
+    await insert("MAYORALITY", ["mayorality_id","name","transliteration","municipality_id"], mayoralitiesData, dbClient);
+    await insert("ALTITUDE", ["altitude_id","altitude_description"], altitudesData, dbClient);
+    await insert("SETTLEMENT_TYPE", ["settlement_type_id","settlement_type_description"], typesData, dbClient);
 
     const settlementChunks = chunkArray(settlementsData, 500);
     for (const chunk of settlementChunks) {
       await insert(
         "SETTLEMENT",
         ["ekatte","name","transliteration","settlement_category","altitude_id","settlement_type_id","mayorality_id","municipality_id"],
-        chunk
+        chunk,
+        dbClient
       );
     }
 
     console.log("Excel EKATTE import complete");
   } catch (err) {
     console.error("Import failed:", err);
-  } finally {
-    await dbClient.end();
   }
 }

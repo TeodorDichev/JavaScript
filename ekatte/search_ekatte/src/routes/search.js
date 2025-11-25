@@ -1,6 +1,4 @@
-import { pool } from "../server.js";
-
-export async function searchHandler(res, parsedUrl) {
+export async function searchHandler(res, parsedUrl, dbpool) {
   const q = parsedUrl.searchParams.get("q")?.trim();
 
   try {
@@ -42,7 +40,7 @@ export async function searchHandler(res, parsedUrl) {
 
     sql += ` ORDER BY s.name ASC;`;
 
-    const result = await pool.query({
+    const result = await dbpool.query({
       name, 
       text: sql,
       values: params,

@@ -10,7 +10,7 @@ export function normalizeMayoralityId(mayoralityId) {
   return mayoralityId.endsWith("-00") ? null : mayoralityId; 
 }
 
-export async function batchInsert(table, columns, rows) {
+export async function batchInsert(table, columns, rows, dbpool = client) {
   if (!rows.length) return;
 
   const placeholders = [];
@@ -32,12 +32,12 @@ export async function batchInsert(table, columns, rows) {
   `;
 
   try {
-    await client.query("BEGIN");
-    await client.query(sql, values);
-    await client.query("COMMIT");
+    await dbpool.query("BEGIN");
+    await dbpool.query(sql, values);
+    await dbpool.query("COMMIT");
     console.log(`${table} inserted successfully (${rows.length} rows)`);
   } catch (err) {
-    await client.query("ROLLBACK");
+    await dbpool.query("ROLLBACK");
     console.error(`Failed to insert into ${table}, rolled back:`, err.message);
   }
 }
