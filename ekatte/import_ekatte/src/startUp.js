@@ -41,13 +41,12 @@ Object.entries(fileTypes).forEach(([key, value]) => {
   console.log(key, value);
 });
 
-await client.connect();
-
 rl.question("Enter file type to import (xlsx, json): ", async (type) => {
   type = type.trim().toLowerCase();
   if (!fileTypes[type] || fileTypes[type].length === 0) {
     console.log("No files of this type found.");
   } else {
+    await client.connect();
     console.log(`Files to import (${type}):`);
     
     switch (type) {
@@ -60,6 +59,5 @@ rl.question("Enter file type to import (xlsx, json): ", async (type) => {
     }
   }
   rl.close();
+  await client.end();
 });
-
-await client.end();

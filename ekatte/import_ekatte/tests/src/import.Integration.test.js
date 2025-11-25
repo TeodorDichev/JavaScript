@@ -60,5 +60,4 @@ describe("Import integration tests", () => {
       expect(res.rowCount).toBeGreaterThan(0);
     }
   });
-
 });
