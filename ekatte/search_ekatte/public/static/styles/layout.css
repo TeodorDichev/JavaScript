@@ -1,0 +1,28 @@
+:root {
+    --primary-blue: #007bff;
+    --excel-green: #1d6f42;
+    --bg-light: #f4f7f6;
+    --border-color: #e0e0e0;
+    --text-main: #2d3436;
+    --text-muted: #636e72;
+    --white: #ffffff;
+}
+
+* { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+
+html, body {
+    margin: 0; padding: 0;
+    height: 100%; width: 100%;
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-light);
+    overflow: hidden;
+}
+
+.layout { display: flex; height: 100vh; width: 100vw; }
+
+.container {
+    flex-grow: 1; height: 100%;
+    display: flex; flex-direction: column;
+    background: white; overflow-y: auto;
+    min-width: 0;
+}

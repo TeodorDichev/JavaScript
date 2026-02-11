@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <title>GeoPhone</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav>
+        <button onclick="showSection('upload')">Качване</button>
+        <button onclick="showSection('chart')">Диаграма</button>
+        <button onclick="showSection('table')">Таблица</button>
+    </nav>
+
+    <main id="content">
+        <section id="upload-section">
+            <h2>Качване на данни</h2>
+            <input type="file" id="countries-file" accept=".csv">
+            <button onclick="uploadFile('countries')">Качи Държави</button>
+            <br><br>
+            <input type="file" id="phones-file" accept=".csv">
+            <button onclick="uploadFile('phones')">Качи Телефони</button>
+        </section>
+
+        <section id="chart-section" style="display:none;">
+            <h2>Графична Статистика</h2>
+            <canvas id="myChart"></canvas>
+        </section>
+
+        <section id="table-section" style="display:none;">
+            <h2>Данни и Експорт</h2>
+            <div class="export-buttons">
+                <button onclick="location.href='/api/export/csv'">CSV</button>
+                <button onclick="location.href='/api/export/excel'">Excel</button>
+                <button onclick="location.href='/api/export/pdf'">PDF</button>
+            </div>
+            <table id="data-table">
+                <thead>
+                    <tr>
+                        <th>Телефон</th>
+                        <th>Код</th>
+                        <th>Държава</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

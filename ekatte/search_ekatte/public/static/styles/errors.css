@@ -1,0 +1,38 @@
+#error-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 9999;
+    width: 500px;      
+    display: flex;
+    flex-direction: column; 
+    gap: 10px;
+    pointer-events: none;
+}
+
+.error-box {
+    position: relative; 
+    pointer-events: auto;
+    background-color: #fff5f5;
+    border: 1px solid #feb2b2;
+    color: #c53030;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.error-box ul {
+    margin: 10px 0 0 20px;
+    padding: 0;
+}
+
+.close-error {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #c53030;
+}

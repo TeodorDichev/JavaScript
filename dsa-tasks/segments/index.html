@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Segments Visualization</title>
+    <style>
+      #canvas {
+        border: 1px solid black;
+        margin-top: 10px;
+      }
+      input {
+        margin: 5px;
+        width: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>Segments Visualization</h3>
+    <label>n: <input type="number" id="n" value="10" /></label>
+    <label>a: <input type="number" id="a" value="2" /></label>
+    <label>b: <input type="number" id="b" value="3" /></label>
+    <label>c: <input type="number" id="c" value="1" /></label>
+    <button onclick="run()">Draw</button>
+    <p>Uncolored length: <span id="uncolored">0</span></p>
+    <canvas id="canvas" width="600" height="80"></canvas>
+    <script src="solution.js"></script>
+  </body>
+</html>

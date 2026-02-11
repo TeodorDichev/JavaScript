@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8" />
+  <title>Редакция на селище</title>
+  <link rel="stylesheet" href="../static/styles/edit.css" />
+  <link rel="stylesheet" href="../static/styles/side-menu.css" />
+  <link rel="stylesheet" href="../static/styles/errors.css" />
+</head>
+<body>
+  <div class="layout">
+    [[[SIDE_MENU]]]
+    <div id="error-container"></div>
+
+    <div class="container">
+      <h1>Редакция на населено място</h1>
+      
+      <form id="update-settlement-form">
+        <div class="update-grid-container">
+          <div class="grid-col-header">Текущи данни</div>
+          <div class="grid-col-header">Нова версия</div>
+
+          <div class="form-group">
+            <label>EKATTE</label>
+            <input type="text" id="old-ekatte" disabled />
+          </div>
+          <div class="form-group">
+            <label>Идентификатор</label>
+            <input type="text" id="display-ekatte" disabled />
+          </div>
+
+          <div class="form-group">
+            <label>Текущо име</label>
+            <input type="text" id="old-name" disabled />
+          </div>
+          <div class="form-group">
+            <label>Ново име*</label>
+            <input type="text" id="name" required />
+          </div>
+
+          <div class="form-group">
+            <label>Текуща транслитерация</label>
+            <input type="text" id="old-translit" disabled />
+          </div>
+          <div class="form-group">
+            <label>Нова транслитерация*</label>
+            <input type="text" id="translit" required />
+          </div>
+
+          <div class="form-group">
+            <label>Текуща категория</label>
+            <input type="text" id="old-category" disabled />
+          </div>
+          <div class="form-group">
+            <label>Нова категория*</label>
+            <input type="number" id="category" min="1" required />
+          </div>
+
+          <div class="form-group">
+            <label>Текуща височина</label>
+            <input type="text" id="old-altitude" disabled />
+          </div>
+          <div class="form-group">
+            <label>Нова височина*</label>
+            <select id="altitude" required></select>
+          </div>
+
+          <div class="form-group">
+            <label>Текущ вид</label>
+            <input type="text" id="old-type" disabled />
+          </div>
+          <div class="form-group">
+            <label>Нов вид*</label>
+            <select id="type" required></select>
+          </div>
+        </div>
+
+        <div class="danger-section">
+          <h3>Критични промени: Териториална принадлежност</h3>
+          <p class="warning-text">
+            Внимание: Ако промените териториалната принадлежност на населеното място, то автоматично ще престане да бъде център на текущите си административни единици!
+          </p>
+          
+          <div class="update-grid-container">
+            <div class="form-group">
+              <label>Текуща Община</label>
+              <input type="text" id="old-municipality" disabled />
+            </div>
+            <div class="form-group autocomplete-wrapper">
+              <label>Нова Община*</label>
+              <input type="text" id="municipality-input" autocomplete="off" required />
+              <div class="autocomplete-box" id="municipality-list"></div>
+            </div>
+
+            <div class="form-group">
+              <label>Текущо Кметство</label>
+              <input type="text" id="old-mayorality" disabled />
+            </div>
+            <div class="form-group autocomplete-wrapper">
+              <label>Ново Кметство</label>
+              <input type="text" id="mayorality-input" autocomplete="off" />
+              <div class="autocomplete-box" id="mayorality-list"></div>
+            </div>
+
+            <div class="form-group">
+              <label>В момента е център на:</label>
+              <br/>
+              <label>Кметство:</label>
+              <div id="mayorality-center-info" class="info-block">Зареждане...</div>
+              <label>Община:</label>
+              <div id="municipality-center-info" class="info-block">Зареждане...</div>
+              <label>Област:</label>
+              <div id="region-center-info" class="info-block">Зареждане...</div>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Запази промените</button>
+      </form>
+    </div>
+  </div>
+  <script src="../static/scripts/components/side-menu.js"></script>
+  <script type="module" src="../static/scripts/pages/settlement/edit-settlement.js"></script>
+</body>
+</html>

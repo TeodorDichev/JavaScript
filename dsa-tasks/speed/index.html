@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Speed</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <style>
+            :root { --gap:12px; --left-w:320px; }
+            html, body { height:100%; margin:0; }
+            .container{
+                display:grid;
+                grid-template-columns: var(--left-w) 1fr;
+                gap: var(--gap);
+                height:100vh;
+                padding:12px;
+                box-sizing:border-box;
+            } 
+
+            .panel-left { display:flex; flex-direction:column; gap:8px; }
+            #input { width:100%; height:calc(100% - 140px); min-height:200px; box-sizing:border-box; padding:8px; resize: none; }
+            .controls { display:flex; gap:8px; align-items:center; }
+
+            .panel-right { display:flex; flex-direction:column; gap:8px; min-width:0; }
+            #canvasContainer { flex:1; border:1px solid #cfcfcf; position:relative; background:#fff; }
+            canvas{ width:100%; height:100%; display:block; }
+
+            @media (max-width:780px) {
+                .container{ grid-template-columns: 1fr; grid-auto-rows: auto 1fr; }
+                #input{ height:200px; }
+                :root{ --left-w:100%; }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="panel-left">
+                <h3>Input</h3>
+                <textarea id="input"></textarea>
+
+                <div class="controls">
+                    <button id="run">Compute</button>
+                    <div id="result"></div>
+                </div>
+            </div>
+
+            <div class="panel-right">
+                <h3>Visualization</h3>
+                <div id="canvasContainer">
+                    <canvas id="canvas"></canvas>
+                </div>
+
+            </div>
+        </div>
+        <script src="solution.js"></script>
+    </body>
+</html>

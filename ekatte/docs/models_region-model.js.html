@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>models/region-model.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#altitudeHandler">altitudeHandler</a></li><li><a href="global.html#calculateStats">calculateStats</a></li><li><a href="global.html#checkEkatteFormat">checkEkatteFormat</a></li><li><a href="global.html#checkIsAlphaNumerical">checkIsAlphaNumerical</a></li><li><a href="global.html#checkIsOnlyAlphabetical">checkIsOnlyAlphabetical</a></li><li><a href="global.html#checkIsOnlyNumerical">checkIsOnlyNumerical</a></li><li><a href="global.html#checkMayoralityCodeFormat">checkMayoralityCodeFormat</a></li><li><a href="global.html#checkMayoralityExists">checkMayoralityExists</a></li><li><a href="global.html#checkMayoralityHasMunicipalityOrRegionCenters">checkMayoralityHasMunicipalityOrRegionCenters</a></li><li><a href="global.html#checkMunicipalityCodeFormat">checkMunicipalityCodeFormat</a></li><li><a href="global.html#checkMunicipalityExists">checkMunicipalityExists</a></li><li><a href="global.html#checkMunicipalityHasRegionCenters">checkMunicipalityHasRegionCenters</a></li><li><a href="global.html#checkNuts3Exists">checkNuts3Exists</a></li><li><a href="global.html#checkNuts3Format">checkNuts3Format</a></li><li><a href="global.html#checkRegionCodeFormat">checkRegionCodeFormat</a></li><li><a href="global.html#checkRegionExists">checkRegionExists</a></li><li><a href="global.html#checkSettlementExists">checkSettlementExists</a></li><li><a href="global.html#checkSettlementIsCenter">checkSettlementIsCenter</a></li><li><a href="global.html#createMayoralityHandler">createMayoralityHandler</a></li><li><a href="global.html#createMunicipalityHandler">createMunicipalityHandler</a></li><li><a href="global.html#createRegionHandler">createRegionHandler</a></li><li><a href="global.html#createSettlementHandler">createSettlementHandler</a></li><li><a href="global.html#csvExportHandler">csvExportHandler</a></li><li><a href="global.html#deleteMayoralityHandler">deleteMayoralityHandler</a></li><li><a href="global.html#deleteMunicipalityHandler">deleteMunicipalityHandler</a></li><li><a href="global.html#deleteRegionHandler">deleteRegionHandler</a></li><li><a href="global.html#deleteSettlementHandler">deleteSettlementHandler</a></li><li><a href="global.html#editMayoralityHandler">editMayoralityHandler</a></li><li><a href="global.html#editMunicipalityHandler">editMunicipalityHandler</a></li><li><a href="global.html#editRegionHandler">editRegionHandler</a></li><li><a href="global.html#editSettlementHandler">editSettlementHandler</a></li><li><a href="global.html#excelExportHandler">excelExportHandler</a></li><li><a href="global.html#exportCsvMayoralityHandler">exportCsvMayoralityHandler</a></li><li><a href="global.html#exportCsvMunicipalityHandler">exportCsvMunicipalityHandler</a></li><li><a href="global.html#exportCsvRegionHandler">exportCsvRegionHandler</a></li><li><a href="global.html#exportCsvSettlementHandler">exportCsvSettlementHandler</a></li><li><a href="global.html#exportExcelMayoralityHandler">exportExcelMayoralityHandler</a></li><li><a href="global.html#exportExcelMunicipalityHandler">exportExcelMunicipalityHandler</a></li><li><a href="global.html#exportExcelRegionHandler">exportExcelRegionHandler</a></li><li><a href="global.html#exportExcelSettlementHandler">exportExcelSettlementHandler</a></li><li><a href="global.html#formatNullValues">formatNullValues</a></li><li><a href="global.html#getRequestBody">getRequestBody</a></li><li><a href="global.html#globalSearchHandler">globalSearchHandler</a></li><li><a href="global.html#homeMayoralityHandler">homeMayoralityHandler</a></li><li><a href="global.html#homeMunicipalityHandler">homeMunicipalityHandler</a></li><li><a href="global.html#homeRegionHandler">homeRegionHandler</a></li><li><a href="global.html#homeSettlementsHandler">homeSettlementsHandler</a></li><li><a href="global.html#infoMayoralityHandler">infoMayoralityHandler</a></li><li><a href="global.html#infoMunicipalityHandler">infoMunicipalityHandler</a></li><li><a href="global.html#infoRegionHandler">infoRegionHandler</a></li><li><a href="global.html#infoSettlementHandler">infoSettlementHandler</a></li><li><a href="global.html#isPositiveInteger">isPositiveInteger</a></li><li><a href="global.html#mayoralityCenterCandidatesHandler">mayoralityCenterCandidatesHandler</a></li><li><a href="global.html#municipalityCenterCandidatesHandler">municipalityCenterCandidatesHandler</a></li><li><a href="global.html#regionCenterCandidatesHandler">regionCenterCandidatesHandler</a></li><li><a href="global.html#router">router</a></li><li><a href="global.html#searchMayoralityHandler">searchMayoralityHandler</a></li><li><a href="global.html#searchMunicipalityHandler">searchMunicipalityHandler</a></li><li><a href="global.html#searchRegionHandler">searchRegionHandler</a></li><li><a href="global.html#sendResponse">sendResponse</a></li><li><a href="global.html#settlementTypeHandler">settlementTypeHandler</a></li><li><a href="global.html#validateEkatteHandler">validateEkatteHandler</a></li><li><a href="global.html#validateMayoralityCodeHandler">validateMayoralityCodeHandler</a></li><li><a href="global.html#validateMayoralityDependenciesHandler">validateMayoralityDependenciesHandler</a></li><li><a href="global.html#validateMunicipalityCodeHandler">validateMunicipalityCodeHandler</a></li><li><a href="global.html#validateMunicipalityDependenciesHandler">validateMunicipalityDependenciesHandler</a></li><li><a href="global.html#validateNutsHandler">validateNutsHandler</a></li><li><a href="global.html#validateRegionCodeHandler">validateRegionCodeHandler</a></li><li><a href="global.html#validateSettlementDependenciesHandler">validateSettlementDependenciesHandler</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">models/region-model.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @fileoverview Model for managing region data.
+ * Interacts with the 'region' table and the 'region_home_view' for optimized reads.
+ */
+
+export const regionModel = {
+  /**
+   * Creates a new region record.
+   * @async
+   * @param {pg.Client} client
+   * @param {Object} region - Settlement data object.
+   * @returns {Promise&lt;pg.QueryResult>}
+   */
+  async create(client, { region_id, name, transliteration, nuts3_id }) {
+    return await client.query(
+      `INSERT INTO region (region_id, name, transliteration, nuts3_id, last_changed_on)
+             VALUES ($1, $2, $3, $4, current_timestamp)`,
+      [region_id, name, transliteration, nuts3_id]
+    );
+  },
+
+  /**
+   * Creates a new region center record.
+   * @async
+   * @param {pg.Client} client
+   * @param {string} region_id
+   * @returns {Promise&lt;pg.QueryResult>}
+   */
+  async createCenter(client, { region_id, ekatte }) {
+    return await client.query(
+      `INSERT INTO region_center (region_id, settlement_ekatte)
+             VALUES ($1, $2)`,
+      [region_id, ekatte]
+    );
+  },
+
+  /**
+   * Updates an existing region record.
+   * @async
+   * @param {pg.Client} client
+   * @param {string} ekatte
+   * @param {Object} body
+   * @returns {Promise&lt;pg.QueryResult>}
+   */
+  async update(client, id, { name, transliteration, nuts3 }) {
+    return await client.query(
+      `UPDATE region 
+             SET name = $1, 
+                 transliteration = $2, 
+                 nuts3_id = $3,
+                 last_changed_on = current_timestamp 
+             WHERE region_id = $4`,
+      [name, transliteration, nuts3, id]
+    );
+  },
+
+  /**
+   * Sets a new center to a region
+   * @async
+   * @param {pg.Client} client
+   * @param {string} ekatte
+   * @param {string} ekatte
+   * @returns {Promise&lt;pg.QueryResult>}
+   */
+  async setCenter(client, region_id, ekatte) {
+    return await client.query(
+      "INSERT INTO region_center (region_id, settlement_ekatte) VALUES ($1, $2)",
+      [region_id, ekatte]
+    );
+  },
+
+  /**
+   * Deletes region center record.
+   * @async
+   * @param {pg.Client} client
+   * @param {string} region_id
+   * @returns {Promise&lt;pg.QueryResult>}
+   */
+  async deleteRegionCenter(client, region_id) {
+    return await client.query(
+      "DELETE FROM region_center WHERE region_id = $1",
+      [region_id]
+    );
+  },
+
+  /**
+   * Deletes municipality centers in the region.
+   * @async
+   * @param {pg.Client} client
+   * @param {string} region_id
+   * @returns {Promise&lt;pg.QueryResult>}
+   */
+  async deleteMunicipalityCentersByRegion(client, region_id) {
+    return await client.query(
+      `
+            DELETE FROM municipality_center 
+            WHERE municipality_id IN (
+                SELECT municipality_id FROM municipality WHERE region_id = $1
+            )`,
+      [region_id]
+    );
+  },
+
+  /**
+   * Deletes mayorality centers in the region.
+   * @async
+   * @param {pg.Client} client
+   * @param {string} region_id
+   * @returns {Promise&lt;pg.QueryResult>}
+   */
+  async deleteMayoralityCentersByRegion(client, region_id) {
+    return await client.query(
+      `
+            DELETE FROM mayorality_center 
+            WHERE mayorality_id IN (
+                SELECT may.mayorality_id FROM mayorality may
+                JOIN municipality mun ON may.municipality_id = mun.municipality_id
+                WHERE mun.region_id = $1
+            )`,
+      [region_id]
+    );
+  },
+
+  /**
+   * Deletes settlements in the region.
+   * @async
+   * @param {pg.Client} client
+   * @param {string} region_id
+   * @returns {Promise&lt;pg.QueryResult>}
+   */
+  async deleteSettlementsByRegion(client, region_id) {
+    return await client.query(
+      `
+            DELETE FROM settlement 
+            WHERE municipality_id IN (
+                SELECT municipality_id FROM municipality WHERE region_id = $1
+            )`,
+      [region_id]
+    );
+  },
+
+  /**
+   * Deletes mayoralities in the region.
+   * @async
+   * @param {pg.Client} client
+   * @param {string} region_id
+   * @returns {Promise&lt;pg.QueryResult>}
+   */
+  async deleteMayoralitiesByRegion(client, region_id) {
+    return await client.query(
+      `
+            DELETE FROM mayorality 
+            WHERE municipality_id IN (
+                SELECT municipality_id FROM municipality WHERE region_id = $1
+            )`,
+      [region_id]
+    );
+  },
+
+  /**
+   * Deletes municipalities in the region.
+   * @async
+   * @param {pg.Client} client
+   * @param {string} region_id
+   * @returns {Promise&lt;pg.QueryResult>}
+   */
+  async deleteMunicipalitiesByRegion(client, region_id) {
+    return await client.query("DELETE FROM municipality WHERE region_id = $1", [
+      region_id,
+    ]);
+  },
+
+  /**
+   * Deletes region.
+   * @async
+   * @param {pg.Client} client
+   * @param {string} region_id
+   * @returns {Promise&lt;pg.QueryResult>}
+   */
+  async deleteRecord(client, region_id) {
+    return await client.query("DELETE FROM region WHERE region_id = $1", [
+      region_id,
+    ]);
+  },
+
+  /**
+   * Retrieves the regions matching the name or transliteration.
+   * @async
+   * @param {pg.Client} client
+   * @param {string} q - The search query string.
+   * @returns {Promise&lt;pg.QueryResult>}
+   */
+  async getFiltered(client, q) {
+    return await client.query({
+      name: "get_filtered_regions",
+      text: `
+            SELECT *
+            FROM region_home_view
+            WHERE (region_name ILIKE $1 || '%' OR region_translit ILIKE $1 || '%')
+            ORDER BY region_name ASC`,
+      values: [q],
+    });
+  },
+
+  /**
+   * Retrieves the total number of regions in the database.
+   * @async
+   * @param {pg.Client} client
+   * @returns {Promise&lt;number>}
+   */
+  async getCount(client) {
+    const res = await client.query(
+      "SELECT COUNT(*) AS count FROM region_home_view"
+    );
+    return res.rows[0].count;
+  },
+
+  /**
+     * @async
+     * @param {pg.Client} client
+     * @param {string} q - Global search string.
+     * @param {string|null} fromDate
+     * @param {string|null} toDate
+     * @param {Object} [filters={}] - Column-specific filters.
+     * @returns {Promise&lt;number>}
+    */
+  async getFilteredCount(client, q, fromDate, toDate, filters = {}) {
+    const values = [];
+    const whereConditions = [];
+
+    if (q) {
+      values.push(`${q}%`);
+      const idx = values.length;
+      whereConditions.push(
+        `(region_name ILIKE $${idx} OR region_translit ILIKE $${idx})`
+      );
+    }
+
+    if (filters) {
+      Object.entries(filters).forEach(([col, val]) => {
+        if (val) {
+          values.push(`${val}%`);
+          const idx = values.length;
+          const columnName = getAllowedColumn(col);
+          if (columnName) {
+            whereConditions.push(`${columnName} ILIKE $${idx}`);
+          }
+        }
+      });
+    }
+
+    if (fromDate) {
+      values.push(fromDate);
+      whereConditions.push(`region_last_change >= $${values.length}::date`);
+    }
+    if (toDate) {
+      values.push(toDate);
+      whereConditions.push(
+        `region_last_change &lt; $${values.length}::date + interval '1 day'`
+      );
+    }
+
+    const whereClause =
+      whereConditions.length > 0
+        ? `WHERE ${whereConditions.join(" AND ")}`
+        : "";
+
+    const res = await client.query({
+      text: `SELECT COUNT(*) AS count FROM region_home_view ${whereClause}`,
+      values: values,
+    });
+
+    return parseInt(res.rows[0].count, 10);
+  },
+
+  /**
+   * Fetches comprehensive details for a single region.
+   * @async
+   * @param {pg.Client} client
+   * @param {string} ekatte
+   * @returns {Promise&lt;Object>} Detailed settlement record.
+   */
+  async getInfo(client, id) {
+    const query = `
+            SELECT r.*, 
+            rc.settlement_ekatte,
+            (SELECT s_center.name FROM settlement s_center WHERE s_center.ekatte = rc.settlement_ekatte) AS center_name,
+            COUNT(DISTINCT s.ekatte) AS settlements_count,
+            COUNT(DISTINCT ma.mayorality_id) AS mayoralities_count,
+            COUNT(DISTINCT mu.municipality_id) AS municipalities_count
+            FROM region r
+            LEFT JOIN region_center rc ON rc.region_id = r.region_id
+            LEFT JOIN municipality mu ON mu.region_id = r.region_id
+            LEFT JOIN mayorality ma ON ma.municipality_id = mu.municipality_id
+            LEFT JOIN settlement s ON s.municipality_id = mu.municipality_id
+            WHERE r.region_id = $1
+            GROUP BY r.name, r.region_id, rc.settlement_ekatte, r.nuts3_id`;
+
+    const res = await client.query(query, [id]);
+    return res.rows[0];
+  },
+
+  /**
+   * Fetches available centers for the region.
+   * @async
+   * @param {pg.Client} client
+   * @param {string} q - The search string for filtering results.
+   * @param {string} region_id
+   * @returns {Promise&lt;Object>} Detailed settlement record.
+   */
+  async getCenterCandidates(client, q, region_id) {
+    return await client.query({
+      text: `
+            SELECT s.ekatte AS id, s.name
+            FROM settlement s
+            JOIN municipality m ON s.municipality_id = m.municipality_id
+            WHERE (s.name ILIKE $1 || '%' OR s.transliteration ILIKE $1 || '%')
+            AND m.region_id = $2
+            ORDER BY s.name`,
+      values: [q, region_id],
+    });
+  },
+
+  /**
+   * @async
+   * @param {pg.Client} client
+   * @param {Object} params
+   * @param {string} params.q - Global search
+   * @param {string} [params.sort] - Format "col:dir" (e.g. "region_name:asc").
+   * @param {number} params.limit
+   * @param {number} params.offset
+   * @param {string} [params.fromDate]
+   * @param {string} [params.toDate]
+   * @param {Object} [params.filters] - Column filters (e.g. { region_name: "Sof" }).
+   * @returns {Promise&lt;Array>}
+   */
+  async getRegionStats(
+    client,
+    { q, sort, limit, offset, fromDate, toDate, filters }
+  ) {
+    const values = [];
+    const whereConditions = [];
+
+    if (q) {
+      values.push(`${q}%`);
+      const idx = values.length;
+      whereConditions.push(
+        `(region_name ILIKE $${idx} OR region_translit ILIKE $${idx})`
+      );
+    }
+
+    if (filters) {
+      Object.entries(filters).forEach(([col, val]) => {
+        if (val) {
+          values.push(`${val}%`);
+          const idx = values.length;
+          const columnName = getAllowedColumn(col);
+          if (columnName) {
+            whereConditions.push(`${columnName} ILIKE $${idx}`);
+          }
+        }
+      });
+    }
+
+    if (fromDate) {
+      values.push(fromDate);
+      whereConditions.push(`region_last_change >= $${values.length}::date`);
+    }
+    if (toDate) {
+      values.push(toDate);
+      whereConditions.push(
+        `region_last_change &lt; $${values.length}::date + interval '1 day'`
+      );
+    }
+
+    const whereClause =
+      whereConditions.length > 0
+        ? `WHERE ${whereConditions.join(" AND ")}`
+        : "";
+    const orderBy = buildOrderByClause(sort);
+    const pagination = buildPaginationClause(limit, offset, values);
+
+    const res = await client.query({
+      text: `
+                SELECT 
+                    *, 
+                    TO_CHAR(region_last_change, 'DD-MM-YYYY') AS region_last_change,
+                    COUNT(*) OVER() AS total_count 
+                FROM region_home_view
+                ${whereClause}
+                ORDER BY ${orderBy}
+                ${pagination}
+            `,
+      values: values,
+    });
+
+    return res.rows;
+  },
+
+  /**
+   * Fetches all regions with their NUTS3 identifiers and administrative center EKATTE.
+   * @param {pg.Client} client - The PostgreSQL client instance.
+   * @returns {Promise&lt;Object[]>} A promise that resolves to an array of region objects.
+   */
+  async getExportData(client) {
+    const query = `
+            SELECT 
+                r.REGION_ID AS ID, 
+                r.NAME, 
+                r.TRANSLITERATION, 
+                r.NUTS3_ID,
+                rc.SETTLEMENT_EKATTE AS CENTER_EKATTE
+            FROM REGION r
+            LEFT JOIN REGION_CENTER rc ON r.REGION_ID = rc.REGION_ID
+            ORDER BY r.REGION_ID ASC
+        `;
+    const res = await client.query(query);
+    return res.rows;
+  },
+};
+
+function getAllowedColumn(col) {
+  const allowed = {
+    center_ekatte: "center_ekatte",
+    center_name: "center_name",
+    region_id: "region_id",
+    region_name: "region_name",
+    nuts3_id: "nuts3_id",
+    region_last_change: "region_home_view.region_last_change",
+  };
+  return allowed[col] || null;
+}
+
+function buildOrderByClause(sort) {
+  if (!sort) return "region_name ASC";
+
+  return (
+    sort
+      .split(",")
+      .map((part) => {
+        const [col, dir] = part.split(":");
+        const targetCol = getAllowedColumn(col);
+        if (targetCol) {
+          return `${targetCol} ${
+            dir?.toLowerCase() === "desc" ? "DESC" : "ASC"
+          }`;
+        }
+        return null;
+      })
+      .filter(Boolean)
+      .join(", ") || "region_name ASC"
+  );
+}
+
+function buildPaginationClause(limit, offset, values) {
+  if (limit === null || limit === undefined) return "";
+
+  values.push(limit);
+  let clause = `LIMIT $${values.length}`;
+
+  if (offset !== null &amp;&amp; offset !== undefined) {
+    values.push(offset);
+    clause += ` OFFSET $${values.length}`;
+  }
+  return clause;
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Tue Jan 13 2026 14:30:59 GMT+0200 (Eastern European Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+<script src="scripts/collapse.js" defer></script>
+
+
+</body>
+</html>

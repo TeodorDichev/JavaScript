@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Index</title>
+    <link rel="stylesheet" href="../static/styles/layout.css" />
+    <link rel="stylesheet" href="../static/styles/components.css" />
+    <link rel="stylesheet" href="../static/styles/table.css" />
+    <link rel="stylesheet" href="../static/styles/side-menu.css" />
+    <link rel="stylesheet" href="../static/styles/filters.css" />
+    <link rel="stylesheet" href="../static/styles/pagination.css" />
+    <link rel="stylesheet" href="../static/styles/modal.css" />
+    <link rel="stylesheet" href="../static/styles/errors.css" />
+  </head>
+  <body>
+    <div class="layout">
+      [[[SIDE_MENU]]]
+      <div id="error-container"></div>
+
+      <div class="container">
+        <div class="header-row">
+          <h1>EKATTE - кметства</h1>
+        </div>
+
+        <div class="toolbar">
+          <div class="search-box">
+            <img src="../static/files/lupa.png" alt="search" />
+            Търсене по дума: <input type="text" id="search-data" />
+          </div>
+
+          <div id="export-stats" class="export-stats" style="display: none">
+            <small
+              >📊 Последен експорт | Време: <strong id="stat-time">-</strong> |
+              Памет: <strong id="stat-mem">-</strong> | CPU:
+              <strong id="stat-cpu">-</strong></small
+            >
+          </div>
+
+          <div class="export-actions">
+            <button
+              id="export-excel-btn"
+              class="btn-export excel"
+              title="Excel Export"
+            >
+              Excel
+            </button>
+            <button
+              id="export-csv-btn"
+              class="btn-export csv"
+              title="CSV Export"
+            >
+              CSV
+            </button>
+            <div id="export-loader" class="loader" style="display: none"></div>
+          </div>
+
+          <a
+            href="../mayorality/create-mayorality.html"
+            id="create-mayorality"
+            class="action-btn"
+            >Добави кметство</a
+          >
+        </div>
+
+        <div class="filter-wrapper">
+          <div class="filter-controls">
+            <select id="filter-type">
+              <option value="" disabled selected>Добави филтър...</option>
+              <option value="center_ekatte">Ekatte</option>
+              <option value="center_name">Име на центъра</option>
+              <option value="mayorality_id">Код на кметството</option>
+              <option value="mayorality_name">Име на кметството</option>
+              <option value="municipality_name">Община</option>
+              <option value="region_name">Област</option>
+            </select>
+            <button id="add-filter-btn" class="action-btn">+ Добави</button>
+          </div>
+
+          <div id="active-filters-container" class="active-filters"></div>
+        </div>
+
+        <h2 id="res-header">Резултати</h2>
+        <div id="result-count"></div>
+
+        <div class="table-wrapper">
+          <div class="date-panel">
+            <div class="date-range">
+              <label>От: <input type="date" id="filter-from-date" /></label>
+              <label>До: <input type="date" id="filter-to-date" /></label>
+            </div>
+          </div>
+          <table class="result-table">
+            <thead>
+              <tr>
+                <th class="sortable" data-col="center_ekatte">
+                  Ekatte <span class="sort-icon"></span>
+                </th>
+                <th class="sortable" data-col="center_name">
+                  Име на центъра <span class="sort-icon"></span>
+                </th>
+                <th class="sortable" data-col="mayorality_id">
+                  Код на кметството <span class="sort-icon"></span>
+                </th>
+                <th class="sortable" data-col="mayorality_name">
+                  Име на кметството <span class="sort-icon"></span>
+                </th>
+                <th class="sortable" data-col="municipality_name">
+                  Община <span class="sort-icon"></span>
+                </th>
+                <th class="sortable" data-col="region_name">
+                  Област <span class="sort-icon"></span>
+                </th>
+                <th class="sortable" data-col="mayorality_last_change">
+                  Промяна <span class="sort-icon"></span>
+                </th>
+                <th>Операции</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <div class="pagination-bar">
+          <div class="limit-selector">
+            <span>Покажи:</span>
+            <select id="page-limit">
+              <option value="10">10</option>
+              <option value="20" selected>20</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
+          </div>
+
+          <div id="pagination-bottom" class="pagination-buttons"></div>
+        </div>
+      </div>
+
+      <div class="modal-overlay" id="infoModal">
+        <div class="modal-content">
+          <h2 id="modalTitle"></h2>
+
+          <div class="modal-section">
+            <h3>Център</h3>
+            <p><strong>EKATTE:</strong> <span id="m-ekatte"></span></p>
+            <p><strong>Име:</strong> <span id="m-center-name"></span></p>
+          </div>
+
+          <div class="modal-section">
+            <h3>Кметство</h3>
+            <p><strong>Име:</strong> <span id="m-name"></span></p>
+            <p><strong>Код:</strong> <span id="m-id"></span></p>
+            <p><strong>Община:</strong> <span id="m-municipality"></span></p>
+            <p><strong>Област:</strong> <span id="m-region"></span></p>
+            <p>
+              <strong>Последна промяна:</strong>
+              <span id="m-last-change"></span>
+            </p>
+          </div>
+
+          <div class="modal-section">
+            <h3>Статистика</h3>
+            <p>
+              <strong>Брой селища:</strong>
+              <span id="m-settlements-count"></span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../static/scripts/components/side-menu.js"></script>
+    <script
+      type="module"
+      src="../static/scripts/pages/mayorality/home-mayorality.js"
+    ></script>
+  </body>
+</html>

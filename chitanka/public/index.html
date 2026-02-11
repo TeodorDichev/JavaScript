@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="bg">
+  <head>
+    <meta charset="utf-8" />
+    <title>Statistics Page</title>
+    <link rel="stylesheet" href="./styles/index.css" />
+  </head>
+  <body>
+    <h1>Статистика</h1>
+
+    <div id="overall-stats">
+      <p>Общо произведения/файлове: <span id="total-texts">0</span></p>
+      <p>Общо уникални думи: <span id="total-unique-words">0</span></p>
+      <p>Общо държави: <span id="total-countries">0</span></p>
+      <p>Общо автори: <span id="total-authors">0</span></p>
+    </div>
+
+    <div class="tables-container">
+      <div class="table-wrapper">
+        <h2>Произведения</h2>
+        <div class="scrollable">
+          <table id="texts-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Заглавие</th>
+                <th>Уникални думи</th>
+                <th>Автор</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <h2>Автори</h2>
+        <div class="scrollable">
+          <table id="authors-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Псевдоним</th>
+                <th>Име</th>
+                <th>Уникални думи</th>
+                <th>Средни думи/изречение</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div id="import-section">
+      <input type="number" id="import-count" value="10" min="1" />
+      <button id="full-process-btn">Импорт + Обработка</button>
+      <button id="reprocess-btn">Само обработка на съществуващи</button>
+
+      <div id="progress-container" style="display: none; margin-top: 20px">
+        <div class="progress-wrapper" id="scraper-progress-wrapper">
+          <label>Сваляне на нови файлове:</label>
+          <div class="progress-bar"><div id="scraper-bar"></div></div>
+          <span id="scraper-status">0 / 0</span>
+        </div>
+
+        <div
+          class="progress-wrapper"
+          id="processor-progress-wrapper"
+          style="margin-top: 10px"
+        >
+          <label>Анализ на текст (уникални думи):</label>
+          <div class="progress-bar"><div id="processor-bar"></div></div>
+          <span id="processor-status">0 / 0</span>
+        </div>
+      </div>
+    </div>
+    
+    <div id="author-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2 id="modal-author-name"></h2>
+        <hr />
+        <div id="modal-body">
+          <p><strong>ID:</strong> <span id="modal-id"></span></p>
+          <p>
+            <strong>Оригинално име:</strong> <span id="modal-original"></span>
+          </p>
+          <p><strong>Държава:</strong> <span id="modal-country"></span></p>
+          <p>
+            <strong>Общо уникални думи:</strong>
+            <span id="modal-unique-words"></span>
+          </p>
+          <p>
+            <strong>Средно думи в изречение:</strong>
+            <span id="modal-avg-sentence"></span>
+          </p>
+          <p>
+            <strong>Най-дълго изречение:</strong>
+            <span id="modal-longest-sentence"></span> думи
+          </p>
+          <p>
+            <strong>Последна обработка:</strong>
+            <span id="modal-last-update"></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <script src="./scripts/index.js" type="module"></script>
+  </body>
+</html>

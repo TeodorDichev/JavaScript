@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>utils/validation.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#altitudeHandler">altitudeHandler</a></li><li><a href="global.html#calculateStats">calculateStats</a></li><li><a href="global.html#checkEkatteFormat">checkEkatteFormat</a></li><li><a href="global.html#checkIsAlphaNumerical">checkIsAlphaNumerical</a></li><li><a href="global.html#checkIsOnlyAlphabetical">checkIsOnlyAlphabetical</a></li><li><a href="global.html#checkIsOnlyNumerical">checkIsOnlyNumerical</a></li><li><a href="global.html#checkMayoralityCodeFormat">checkMayoralityCodeFormat</a></li><li><a href="global.html#checkMayoralityExists">checkMayoralityExists</a></li><li><a href="global.html#checkMayoralityHasMunicipalityOrRegionCenters">checkMayoralityHasMunicipalityOrRegionCenters</a></li><li><a href="global.html#checkMunicipalityCodeFormat">checkMunicipalityCodeFormat</a></li><li><a href="global.html#checkMunicipalityExists">checkMunicipalityExists</a></li><li><a href="global.html#checkMunicipalityHasRegionCenters">checkMunicipalityHasRegionCenters</a></li><li><a href="global.html#checkNuts3Exists">checkNuts3Exists</a></li><li><a href="global.html#checkNuts3Format">checkNuts3Format</a></li><li><a href="global.html#checkRegionCodeFormat">checkRegionCodeFormat</a></li><li><a href="global.html#checkRegionExists">checkRegionExists</a></li><li><a href="global.html#checkSettlementExists">checkSettlementExists</a></li><li><a href="global.html#checkSettlementIsCenter">checkSettlementIsCenter</a></li><li><a href="global.html#createMayoralityHandler">createMayoralityHandler</a></li><li><a href="global.html#createMunicipalityHandler">createMunicipalityHandler</a></li><li><a href="global.html#createRegionHandler">createRegionHandler</a></li><li><a href="global.html#createSettlementHandler">createSettlementHandler</a></li><li><a href="global.html#csvExportHandler">csvExportHandler</a></li><li><a href="global.html#deleteMayoralityHandler">deleteMayoralityHandler</a></li><li><a href="global.html#deleteMunicipalityHandler">deleteMunicipalityHandler</a></li><li><a href="global.html#deleteRegionHandler">deleteRegionHandler</a></li><li><a href="global.html#deleteSettlementHandler">deleteSettlementHandler</a></li><li><a href="global.html#editMayoralityHandler">editMayoralityHandler</a></li><li><a href="global.html#editMunicipalityHandler">editMunicipalityHandler</a></li><li><a href="global.html#editRegionHandler">editRegionHandler</a></li><li><a href="global.html#editSettlementHandler">editSettlementHandler</a></li><li><a href="global.html#excelExportHandler">excelExportHandler</a></li><li><a href="global.html#exportCsvMayoralityHandler">exportCsvMayoralityHandler</a></li><li><a href="global.html#exportCsvMunicipalityHandler">exportCsvMunicipalityHandler</a></li><li><a href="global.html#exportCsvRegionHandler">exportCsvRegionHandler</a></li><li><a href="global.html#exportCsvSettlementHandler">exportCsvSettlementHandler</a></li><li><a href="global.html#exportExcelMayoralityHandler">exportExcelMayoralityHandler</a></li><li><a href="global.html#exportExcelMunicipalityHandler">exportExcelMunicipalityHandler</a></li><li><a href="global.html#exportExcelRegionHandler">exportExcelRegionHandler</a></li><li><a href="global.html#exportExcelSettlementHandler">exportExcelSettlementHandler</a></li><li><a href="global.html#formatNullValues">formatNullValues</a></li><li><a href="global.html#getRequestBody">getRequestBody</a></li><li><a href="global.html#globalSearchHandler">globalSearchHandler</a></li><li><a href="global.html#homeMayoralityHandler">homeMayoralityHandler</a></li><li><a href="global.html#homeMunicipalityHandler">homeMunicipalityHandler</a></li><li><a href="global.html#homeRegionHandler">homeRegionHandler</a></li><li><a href="global.html#homeSettlementsHandler">homeSettlementsHandler</a></li><li><a href="global.html#infoMayoralityHandler">infoMayoralityHandler</a></li><li><a href="global.html#infoMunicipalityHandler">infoMunicipalityHandler</a></li><li><a href="global.html#infoRegionHandler">infoRegionHandler</a></li><li><a href="global.html#infoSettlementHandler">infoSettlementHandler</a></li><li><a href="global.html#isPositiveInteger">isPositiveInteger</a></li><li><a href="global.html#mayoralityCenterCandidatesHandler">mayoralityCenterCandidatesHandler</a></li><li><a href="global.html#municipalityCenterCandidatesHandler">municipalityCenterCandidatesHandler</a></li><li><a href="global.html#regionCenterCandidatesHandler">regionCenterCandidatesHandler</a></li><li><a href="global.html#router">router</a></li><li><a href="global.html#searchMayoralityHandler">searchMayoralityHandler</a></li><li><a href="global.html#searchMunicipalityHandler">searchMunicipalityHandler</a></li><li><a href="global.html#searchRegionHandler">searchRegionHandler</a></li><li><a href="global.html#sendResponse">sendResponse</a></li><li><a href="global.html#settlementTypeHandler">settlementTypeHandler</a></li><li><a href="global.html#validateEkatteHandler">validateEkatteHandler</a></li><li><a href="global.html#validateMayoralityCodeHandler">validateMayoralityCodeHandler</a></li><li><a href="global.html#validateMayoralityDependenciesHandler">validateMayoralityDependenciesHandler</a></li><li><a href="global.html#validateMunicipalityCodeHandler">validateMunicipalityCodeHandler</a></li><li><a href="global.html#validateMunicipalityDependenciesHandler">validateMunicipalityDependenciesHandler</a></li><li><a href="global.html#validateNutsHandler">validateNutsHandler</a></li><li><a href="global.html#validateRegionCodeHandler">validateRegionCodeHandler</a></li><li><a href="global.html#validateSettlementDependenciesHandler">validateSettlementDependenciesHandler</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">utils/validation.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @fileoverview Validation utility functions for administrative data formats 
+ * and database integrity checks.
+ */
+
+import { validationModel } from "../models/validation-model.js";
+
+/**
+ * Checks if a string contains only digits.
+ * @param {string} str 
+ * @returns {boolean}
+ */
+export function checkIsOnlyNumerical(str) {
+    if (typeof str !== "string") return false;
+    const v = str.trim();
+    return v !== "" &amp;&amp; /^[0-9]+$/.test(v);
+}
+
+/**
+ * Validates if a value is a positive integer.
+ * @param {any} num 
+ * @returns {boolean}
+ */
+export function isPositiveInteger(num) {
+    if (typeof num !== "number") return false;
+    return Number.isInteger(num) &amp;&amp; num > 0;
+}
+
+/**
+ * Checks if a string contains only alphabetical characters (Cyrillic and Latin).
+ * @param {string} str 
+ * @returns {boolean}
+ */
+export function checkIsOnlyAlphabetical(str) {
+    if (typeof str !== "string") return false;
+    const v = str.trim();
+    return v !== "" &amp;&amp; /^[A-Za-zА-Яа-яЁё\s]+$/.test(v);
+}
+
+/**
+ * Checks if a string is alphanumeric.
+ * @param {string} str 
+ * @returns {boolean}
+ */
+export function checkIsAlphaNumerical(str) {
+    if (typeof str !== "string") return false;
+    const v = str.trim();
+    return v !== "" &amp;&amp; /^[A-Za-zА-Яа-яЁё0-9]+$/.test(v);
+}
+
+// --- Database Existence Checks (Using Model) ---
+
+/**
+ * Checks if a settlement exists in the database by EKATTE.
+ * @async
+ * @param {pg.Client} client 
+ * @param {string} ekatte 
+ * @returns {Promise&lt;boolean>}
+ */
+export async function checkSettlementExists(client, ekatte) {
+    const result = await validationModel.existsSettlement(client, ekatte);
+    return result.rowCount > 0;
+}
+
+/**
+ * Checks if a mayorality exists in the database.
+ * @async
+ * @param {pg.Client} client 
+ * @param {string} mayoralityId 
+ * @returns {Promise&lt;boolean>}
+ */
+export async function checkMayoralityExists(client, mayoralityId) {
+    const result = await validationModel.existsMayorality(client, mayoralityId);
+    return result.rowCount > 0;
+}
+
+/**
+ * Checks if a municipality exists in the database.
+ * @async
+ * @param {pg.Client} client 
+ * @param {string} municipalityId 
+ * @returns {Promise&lt;boolean>}
+ */
+export async function checkMunicipalityExists(client, municipalityId) {
+    const result = await validationModel.existsMunicipality(client, municipalityId);
+    return result.rowCount > 0;
+}
+
+/**
+ * Checks if a region exists in the database.
+ * @async
+ * @param {pg.Client} client 
+ * @param {string} regionId 
+ * @returns {Promise&lt;boolean>}
+ */
+export async function checkRegionExists(client, regionId) {
+    const result = await validationModel.existsRegion(client, regionId);
+    return result.rowCount > 0;
+}
+
+/**
+ * Checks if a region exists by NUTS3 code.
+ * @async
+ * @param {pg.Client} client 
+ * @param {string} nuts3 
+ * @returns {Promise&lt;boolean>}
+ */
+export async function checkNuts3Exists(client, nuts3) {
+    const result = await validationModel.existsRegionByNuts(client, nuts3);
+    return result.rowCount > 0;
+}
+
+/**
+ * Validates the specific format of a Region Code (3 alphabetical chars).
+ * @param {string} regionId 
+ * @returns {boolean}
+ */
+export function checkRegionCodeFormat(regionId) {
+    if (typeof regionId !== "string") return false;
+    const v = regionId.trim();
+    return v.length === 3 &amp;&amp; checkIsOnlyAlphabetical(v);
+}
+
+/**
+ * Validates Municipality Code format (5 alphanumeric chars).
+ * @param {string} municipalityId
+ * @returns {boolean}
+ */
+export function checkMunicipalityCodeFormat(municipalityId) {
+    if (typeof municipalityId !== "string") return false;
+    const v = municipalityId.trim();
+    return v.length === 5 &amp;&amp; checkIsAlphaNumerical(v);
+}
+
+/**
+ * Validates Mayorality Code format (8 chars: 5 alphanumeric + others).
+ * @param {string} mayoralityId
+ * @returns {boolean}
+ */
+export function checkMayoralityCodeFormat(mayoralityId) {
+    if (typeof mayoralityId !== "string") return false;
+    const v = mayoralityId.trim();
+    return v.length === 8 &amp;&amp; 
+           checkIsAlphaNumerical(v.slice(0, 5)) &amp;&amp; 
+           checkIsOnlyNumerical(v.slice(-2));
+}
+
+/**
+ * Validates EKATTE format (5 digits).
+ * @param {string} ekatte
+ * @returns {boolean}
+ */
+export function checkEkatteFormat(ekatte) {
+    if (typeof ekatte !== "string") return false;
+    const v = ekatte.trim();
+    return v.length === 5 &amp;&amp; checkIsOnlyNumerical(v);
+}
+
+/**
+ * Validates NUTS3 format (2 alpha + 3 numerical).
+ * @param {string} nuts3
+ * @returns {boolean}
+ */
+export function checkNuts3Format(nuts3) {
+    if (typeof nuts3 !== "string") return false;
+    const v = nuts3.trim();
+    return v.length === 5 &amp;&amp;
+           checkIsOnlyAlphabetical(v.slice(0, 2)) &amp;&amp;
+           checkIsOnlyNumerical(v.slice(2));
+}
+
+/**
+ * Warns if a municipality contains settlements that are regional centers.
+ * @async
+ * @param {pg.Client} client
+ * @param {string} municipalityId
+ * @returns {Promise&lt;{valid: boolean, message: string}>}
+ */
+export async function checkMunicipalityHasRegionCenters(client, municipalityId) {
+    const result = await validationModel.getRegionCentersInMunicipality(client, municipalityId.trim());
+    if (result.rowCount > 0) {
+        return { valid: true, message: "Warning: This municipality contains a settlement that is a regional center!" };
+    }
+    return { valid: false, message: "OK" };
+}
+
+/**
+ * Checks if any settlements within a specific municipality serve as regional centers.
+ * @async
+ * @param {pg.Client} client
+ * @param {string} mayoralityId
+ * @returns {Promise&lt;{valid: boolean, message: string}>}
+ */
+export async function checkMayoralityHasMunicipalityOrRegionCenters(client, mayoralityId) {
+    const result = await validationModel.getAffectedCentersByMayorality(client, mayoralityId);
+    if (result.rowCount > 0) {
+        const list = result.rows.map(row => `- ${row.affected_info}`).join('\n');
+        return { 
+            valid: true, 
+            message: `Warning: This mayorality contains settlements with critical roles:\n${list}` 
+        };
+    }
+    return { valid: false, message: "OK" };
+}
+
+/**
+ * Checks if a settlement is registered as a center for any administrative unit.
+ * @async
+ * @param {pg.Client} client
+ * @param {string} ekatte
+ * @returns {Promise&lt;{valid: boolean, message: string}>}
+ */
+export async function checkSettlementIsCenter(client, ekatte) {
+    const result = await validationModel.getAffectedUnitsBySettlement(client, ekatte);
+    if (result.rowCount > 0) {
+        const list = result.rows.map(row => `- ${row.affected_name}`).join('\n');
+        return { 
+            valid: true, 
+            message: `Warning: This settlement is a center for:\n${list}\nDeleting it will leave these units without a center!` 
+        };
+    }
+    return { valid: false, message: "OK" };
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Tue Jan 13 2026 14:30:59 GMT+0200 (Eastern European Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+<script src="scripts/collapse.js" defer></script>
+
+
+</body>
+</html>

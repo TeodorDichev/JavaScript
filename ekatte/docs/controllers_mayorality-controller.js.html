@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>controllers/mayorality-controller.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#altitudeHandler">altitudeHandler</a></li><li><a href="global.html#calculateStats">calculateStats</a></li><li><a href="global.html#checkEkatteFormat">checkEkatteFormat</a></li><li><a href="global.html#checkIsAlphaNumerical">checkIsAlphaNumerical</a></li><li><a href="global.html#checkIsOnlyAlphabetical">checkIsOnlyAlphabetical</a></li><li><a href="global.html#checkIsOnlyNumerical">checkIsOnlyNumerical</a></li><li><a href="global.html#checkMayoralityCodeFormat">checkMayoralityCodeFormat</a></li><li><a href="global.html#checkMayoralityExists">checkMayoralityExists</a></li><li><a href="global.html#checkMayoralityHasMunicipalityOrRegionCenters">checkMayoralityHasMunicipalityOrRegionCenters</a></li><li><a href="global.html#checkMunicipalityCodeFormat">checkMunicipalityCodeFormat</a></li><li><a href="global.html#checkMunicipalityExists">checkMunicipalityExists</a></li><li><a href="global.html#checkMunicipalityHasRegionCenters">checkMunicipalityHasRegionCenters</a></li><li><a href="global.html#checkNuts3Exists">checkNuts3Exists</a></li><li><a href="global.html#checkNuts3Format">checkNuts3Format</a></li><li><a href="global.html#checkRegionCodeFormat">checkRegionCodeFormat</a></li><li><a href="global.html#checkRegionExists">checkRegionExists</a></li><li><a href="global.html#checkSettlementExists">checkSettlementExists</a></li><li><a href="global.html#checkSettlementIsCenter">checkSettlementIsCenter</a></li><li><a href="global.html#createMayoralityHandler">createMayoralityHandler</a></li><li><a href="global.html#createMunicipalityHandler">createMunicipalityHandler</a></li><li><a href="global.html#createRegionHandler">createRegionHandler</a></li><li><a href="global.html#createSettlementHandler">createSettlementHandler</a></li><li><a href="global.html#csvExportHandler">csvExportHandler</a></li><li><a href="global.html#deleteMayoralityHandler">deleteMayoralityHandler</a></li><li><a href="global.html#deleteMunicipalityHandler">deleteMunicipalityHandler</a></li><li><a href="global.html#deleteRegionHandler">deleteRegionHandler</a></li><li><a href="global.html#deleteSettlementHandler">deleteSettlementHandler</a></li><li><a href="global.html#editMayoralityHandler">editMayoralityHandler</a></li><li><a href="global.html#editMunicipalityHandler">editMunicipalityHandler</a></li><li><a href="global.html#editRegionHandler">editRegionHandler</a></li><li><a href="global.html#editSettlementHandler">editSettlementHandler</a></li><li><a href="global.html#excelExportHandler">excelExportHandler</a></li><li><a href="global.html#exportCsvMayoralityHandler">exportCsvMayoralityHandler</a></li><li><a href="global.html#exportCsvMunicipalityHandler">exportCsvMunicipalityHandler</a></li><li><a href="global.html#exportCsvRegionHandler">exportCsvRegionHandler</a></li><li><a href="global.html#exportCsvSettlementHandler">exportCsvSettlementHandler</a></li><li><a href="global.html#exportExcelMayoralityHandler">exportExcelMayoralityHandler</a></li><li><a href="global.html#exportExcelMunicipalityHandler">exportExcelMunicipalityHandler</a></li><li><a href="global.html#exportExcelRegionHandler">exportExcelRegionHandler</a></li><li><a href="global.html#exportExcelSettlementHandler">exportExcelSettlementHandler</a></li><li><a href="global.html#formatNullValues">formatNullValues</a></li><li><a href="global.html#getRequestBody">getRequestBody</a></li><li><a href="global.html#globalSearchHandler">globalSearchHandler</a></li><li><a href="global.html#homeMayoralityHandler">homeMayoralityHandler</a></li><li><a href="global.html#homeMunicipalityHandler">homeMunicipalityHandler</a></li><li><a href="global.html#homeRegionHandler">homeRegionHandler</a></li><li><a href="global.html#homeSettlementsHandler">homeSettlementsHandler</a></li><li><a href="global.html#infoMayoralityHandler">infoMayoralityHandler</a></li><li><a href="global.html#infoMunicipalityHandler">infoMunicipalityHandler</a></li><li><a href="global.html#infoRegionHandler">infoRegionHandler</a></li><li><a href="global.html#infoSettlementHandler">infoSettlementHandler</a></li><li><a href="global.html#isPositiveInteger">isPositiveInteger</a></li><li><a href="global.html#mayoralityCenterCandidatesHandler">mayoralityCenterCandidatesHandler</a></li><li><a href="global.html#municipalityCenterCandidatesHandler">municipalityCenterCandidatesHandler</a></li><li><a href="global.html#regionCenterCandidatesHandler">regionCenterCandidatesHandler</a></li><li><a href="global.html#router">router</a></li><li><a href="global.html#searchMayoralityHandler">searchMayoralityHandler</a></li><li><a href="global.html#searchMunicipalityHandler">searchMunicipalityHandler</a></li><li><a href="global.html#searchRegionHandler">searchRegionHandler</a></li><li><a href="global.html#sendResponse">sendResponse</a></li><li><a href="global.html#settlementTypeHandler">settlementTypeHandler</a></li><li><a href="global.html#validateEkatteHandler">validateEkatteHandler</a></li><li><a href="global.html#validateMayoralityCodeHandler">validateMayoralityCodeHandler</a></li><li><a href="global.html#validateMayoralityDependenciesHandler">validateMayoralityDependenciesHandler</a></li><li><a href="global.html#validateMunicipalityCodeHandler">validateMunicipalityCodeHandler</a></li><li><a href="global.html#validateMunicipalityDependenciesHandler">validateMunicipalityDependenciesHandler</a></li><li><a href="global.html#validateNutsHandler">validateNutsHandler</a></li><li><a href="global.html#validateRegionCodeHandler">validateRegionCodeHandler</a></li><li><a href="global.html#validateSettlementDependenciesHandler">validateSettlementDependenciesHandler</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">controllers/mayorality-controller.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @fileoverview Mayorality resource handlers.
+ * Coordinates local administration records and their links to specific
+ * center settlements.
+ */
+import ExcelJS from "exceljs";
+import * as validation from "../utils/validation.js";
+import { mayoralityModel } from "../models/mayorality-model.js";
+import { settlementModel } from "../models/settlement-model.js";
+import { sendResponse } from "../utils/response-helper.js";
+import { calculateStats, formatNullValues } from "../utils/export-helper.js";
+
+/**
+ * Route handler to create a new Mayorality along with its initial administrative center settlement.
+ * Uses a database transaction to ensure both the mayorality and its center are created atomically.
+ * @async
+ * @param {http.ServerResponse} res - The Node.js HTTP response object.
+ * @param {pg.Client} client - The PostgreSQL database client instance.
+ * @param {Object} bodyData - The request body containing mayorality and center details.
+ * @returns {Promise&lt;void>}
+ */
+export async function createMayoralityHandler(res, client, bodyData) {
+  const { mayorality, center } = bodyData;
+  const errors = [];
+
+  try {
+    if (!center || !mayorality) errors.push("Липсващи данни");
+    if (!validation.checkEkatteFormat(center?.ekatte))
+      errors.push("Невалиден формат на ekatte");
+    if (await validation.checkSettlementExists(client, center?.ekatte))
+      errors.push("Вече съществува такова селище");
+    if (
+      await validation.checkMayoralityExists(client, mayorality?.mayorality_id)
+    )
+      errors.push("Вече има такова кметство");
+    if (!validation.checkIsOnlyAlphabetical(center?.name))
+      errors.push("Невалидно име");
+
+    if (errors.length > 0) {
+      return sendResponse(res, 400, {
+        message: "Грешка при валидация",
+        errors,
+      });
+    }
+
+    await client.query("BEGIN");
+    await mayoralityModel.create(client, mayorality);
+    await settlementModel.create(client, center);
+    await mayoralityModel.createCenter(client, center);
+    await client.query("COMMIT");
+
+    sendResponse(res, 201, { message: "Кметство и център успешно създадени" });
+  } catch (err) {
+    await client.query("ROLLBACK").catch(() => {});
+    sendResponse(res, 500, {
+      message: "Системна грешка при създаване",
+      errors: [err.message],
+    });
+  }
+}
+
+/**
+ * Route handler to delete a Mayorality and all its associated dependencies.
+ * Performs a cascaded cleanup of administrative centers (municipality/region) and settlements within a transaction.
+ * @async
+ * @param {http.ServerResponse} res - The Node.js HTTP response object.
+ * @param {URL} parsedUrl - The parsed request URL containing the 'id' search parameter.
+ * @param {pg.Client} client - The PostgreSQL database client instance.
+ * @returns {Promise&lt;void>}
+ */
+export async function deleteMayoralityHandler(res, parsedUrl, client) {
+  const id = parsedUrl.searchParams.get("id")?.trim() ?? "";
+
+  if (!validation.checkMayoralityCodeFormat(id)) {
+    return sendResponse(res, 400, {
+      message: "Невалиден формат на кода",
+      errors: ["Невалиден формат"],
+    });
+  }
+
+  try {
+    await client.query("BEGIN");
+    await mayoralityModel.deleteCenter(client, id);
+    await mayoralityModel.deleteMunicipalityCenters(client, id);
+    await mayoralityModel.deleteRegionCenters(client, id);
+    await mayoralityModel.deleteSettlements(client, id);
+
+    const result = await mayoralityModel.deleteRecord(client, id);
+
+    if (result.rowCount === 0) {
+      await client.query("ROLLBACK");
+      return sendResponse(res, 404, {
+        message: "Обектът не съществува",
+        errors: ["Кметството не е намерено"],
+      });
+    }
+
+    await client.query("COMMIT");
+    sendResponse(res, 200, {
+      message: "Кметството и неговите селища бяха изтрити успешно",
+    });
+  } catch (err) {
+    await client.query("ROLLBACK").catch(() => {});
+    sendResponse(res, 500, {
+      message: "Грешка при изтриване",
+      errors: [err.message],
+    });
+  }
+}
+
+/**
+ * Route handler to update Mayorality details and its designated administrative center.
+ * @async
+ * @param {http.ServerResponse} res - The Node.js HTTP response object.
+ * @param {URL} parsedUrl - The parsed request URL used to extract the mayorality ID from the path.
+ * @param {pg.Client} client - The PostgreSQL database client instance.
+ * @param {Object} bodyData - Updated mayorality data including optional center_id.
+ * @returns {Promise&lt;void>}
+ */
+export async function editMayoralityHandler(res, parsedUrl, client, bodyData) {
+  const id = parsedUrl.pathname.split("/").pop();
+  const errors = [];
+
+  if (!validation.checkMayoralityCodeFormat(id))
+    errors.push("Невалиден код на кметство");
+  if (errors.length > 0)
+    return sendResponse(res, 400, { message: "Валидационна грешка", errors });
+
+  try {
+    await client.query("BEGIN");
+    await mayoralityModel.update(client, id, bodyData);
+    await mayoralityModel.deleteCenter(client, id);
+    if (bodyData.center_id) {
+      await mayoralityModel.setCenter(client, id, bodyData.center_id);
+    }
+    await client.query("COMMIT");
+
+    sendResponse(res, 200, { message: "Успешна редакция" });
+  } catch (err) {
+    await client.query("ROLLBACK").catch(() => {});
+    sendResponse(res, 500, {
+      message: "Грешка при редакцията",
+      errors: [err.message],
+    });
+  }
+}
+
+/**
+ * Route handler for the Mayorality dashboard/listing page.
+ * Fetches paginated, sorted, and filtered statistics using window functions for total row counts.
+ * @async
+ * @param {http.ServerResponse} res - The Node.js HTTP response object.
+ * @param {URL} parsedUrl - The parsed request URL containing pagination (page, limit), sort, and search (q) parameters.
+ * @param {pg.Client} client - The PostgreSQL database client instance.
+ * @returns {Promise&lt;void>}
+ */
+export async function homeMayoralityHandler(res, parsedUrl, client) {
+  const q = parsedUrl.searchParams.get("q")?.trim() ?? "";
+  const sort = parsedUrl.searchParams.get("sort")?.trim() ?? "";
+  const page = parseInt(parsedUrl.searchParams.get("page")) || 1;
+  const limit = parseInt(parsedUrl.searchParams.get("limit")) || 20;
+  const fromDate = parsedUrl.searchParams.get("fromDate") || null;
+  const toDate = parsedUrl.searchParams.get("toDate") || null;
+  const offset = (page - 1) * limit;
+
+  const filters = {
+    center_ekatte: parsedUrl.searchParams.get("center_ekatte") || null,
+    center_name: parsedUrl.searchParams.get("center_name") || null,
+    mayorality_id: parsedUrl.searchParams.get("mayorality_id") || null,
+    mayorality_name: parsedUrl.searchParams.get("mayorality_name") || null,
+    municipality_name: parsedUrl.searchParams.get("municipality_name") || null,
+    region_name: parsedUrl.searchParams.get("region_name") || null,
+  };
+
+  try {
+    const rows = await mayoralityModel.getMayoralityStats(client, {
+      q,
+      sort,
+      limit,
+      offset,
+      fromDate,
+      toDate,
+      filters,
+    });
+
+    const totalCount = await mayoralityModel.getCount(client);
+    const hasActiveFilters =
+      q || fromDate || toDate || Object.values(filters).some((v) => v !== null);
+
+    let filteredCount;
+    if (hasActiveFilters) {
+      filteredCount = await mayoralityModel.getFilteredCount(
+        client,
+        q,
+        fromDate,
+        toDate,
+        filters
+      );
+    } else {
+      filteredCount = totalCount;
+    }
+
+    const totalRowsAfterFilter =
+      rows.length > 0 ? parseInt(rows[0].total_count) : 0;
+
+    sendResponse(res, 200, {
+      data: {
+        rows: rows,
+        totalCount: totalCount,
+        filteredCount: filteredCount,
+        pagination: {
+          total: totalRowsAfterFilter,
+          page: page,
+          limit: limit,
+          totalPages: Math.ceil(totalRowsAfterFilter / limit),
+        },
+      },
+    });
+  } catch (err) {
+    console.error("Mayorality Search Error:", err);
+    sendResponse(res, 500, {
+      message: "Грешка при зареждане на кметства",
+      errors: [err.message],
+    });
+  }
+}
+
+/**
+ * Route handler for autocomplete/dropdown search for Mayoralties.
+ * Supports optional filtering by a specific parent municipality.
+ * @async
+ * @param {http.ServerResponse} res - The Node.js HTTP response object.
+ * @param {URL} parsedUrl - The parsed request URL containing query (q) and optional municipalityId parameters.
+ * @param {pg.Client} client - The PostgreSQL database client instance.
+ * @returns {Promise&lt;void>}
+ */
+export async function searchMayoralityHandler(res, parsedUrl, client) {
+  const q = parsedUrl.searchParams.get("q")?.trim() ?? "";
+  const muId = parsedUrl.searchParams.get("municipalityId")?.trim() ?? "";
+
+  try {
+    const result = await mayoralityModel.getFiltered(client, q, muId);
+
+    const formatted = result.rows.slice(0, 10).map((row) => ({
+      id: row.mayorality_id,
+      name: `${row.mayorality_name}, ${row.municipality_name}, ${row.region_name}`,
+      municipalityId: row.municipality_id,
+      municipalityName: `${row.municipality_name}, ${row.region_name}`,
+      regionName: row.region_name,
+    }));
+    sendResponse(res, 200, { data: formatted });
+  } catch (err) {
+    sendResponse(res, 500, {
+      message: "Грешка при търсене на кметства",
+      errors: [err.message],
+    });
+  }
+}
+
+/**
+ * Route handler to retrieve comprehensive details for a specific Mayorality.
+ * @async
+ * @param {http.ServerResponse} res - The Node.js HTTP response object.
+ * @param {URL} parsedUrl - The parsed request URL containing the mayorality ID in the 'q' parameter.
+ * @param {pg.Client} client - The PostgreSQL database client instance.
+ * @returns {Promise&lt;void>}
+ */
+export async function infoMayoralityHandler(res, parsedUrl, client) {
+  const id = parsedUrl.searchParams.get("q")?.trim() ?? "";
+
+  try {
+    const data = await mayoralityModel.getInfo(client, id);
+    sendResponse(res, 200, { data: data });
+  } catch (err) {
+    sendResponse(res, 500, {
+      message: "Грешка при детайли",
+      errors: [err.message],
+    });
+  }
+}
+
+/**
+ * Route handler to fetch a list of settlements within a specific Mayorality that can serve as its administrative center.
+ * @async
+ * @param {http.ServerResponse} res - The Node.js HTTP response object.
+ * @param {URL} parsedUrl - The parsed request URL containing search string (q) and mayorality ID (id).
+ * @param {pg.Client} client - The PostgreSQL database client instance.
+ * @returns {Promise&lt;void>}
+ */
+export async function mayoralityCenterCandidatesHandler(
+  res,
+  parsedUrl,
+  client
+) {
+  const q = parsedUrl.searchParams.get("q")?.trim() ?? "";
+  const id = parsedUrl.searchParams.get("id")?.trim() ?? "";
+  try {
+    const data = await mayoralityModel.getCenterCandidates(client, q, id);
+    sendResponse(res, 200, { data });
+  } catch (err) {
+    sendResponse(res, 500, {
+      message: "Грешка при кандидати",
+      errors: [err.message],
+    });
+  }
+}
+
+/**
+ * Generates a single Excel file for mayoralities.
+ * @param {Object} res - Express response object.
+ * @param {URL} parsedUrl - The parsed request URL with q, sort, page, and limit parameters.
+ * @param {pg.Client} client - The PostgreSQL client instance.
+ * @returns {Promise&lt;void>}
+ */
+export async function exportExcelMayoralityHandler(res, parsedUrl, client) {
+  const start = performance.now();
+  const startUsage = process.cpuUsage();
+
+  const q = parsedUrl.searchParams.get("q")?.trim() ?? "";
+  const sort = parsedUrl.searchParams.get("sort")?.trim() ?? "";
+  const fromDate = parsedUrl.searchParams.get("fromDate") || null;
+  const toDate = parsedUrl.searchParams.get("toDate") || null;
+
+  const filters = {
+    center_ekatte: parsedUrl.searchParams.get("center_ekatte") || null,
+    center_name: parsedUrl.searchParams.get("center_name") || null,
+    mayorality_id: parsedUrl.searchParams.get("mayorality_id") || null,
+    mayorality_name: parsedUrl.searchParams.get("mayorality_name") || null,
+    municipality_name: parsedUrl.searchParams.get("municipality_name") || null,
+    region_name: parsedUrl.searchParams.get("region_name") || null,
+  };
+
+  try {
+    const workbook = new ExcelJS.Workbook();
+    const data = await mayoralityModel.getMayoralityStats(client, {
+      q,
+      sort,
+      limit: null,
+      offset: 0,
+      fromDate,
+      toDate,
+      filters
+    });
+    const sheet = workbook.addWorksheet("Mayoralities");
+    const columnMapping = [
+      { key: "center_ekatte", header: "Ekatte" },
+      { key: "center_name", header: "Име на център" },
+      { key: "mayorality_id", header: "Код на кметство" },
+      { key: "mayorality_name", header: "Име на кметство" },
+      { key: "municipality_name", header: "Община" },
+      { key: "region_name", header: "Област" },
+      { key: "mayorality_last_change", header: "Промяна" },
+    ];
+
+    if (data.length > 0) {
+      sheet.columns = columnMapping.map((col) => ({
+        header: col.header,
+        key: col.key,
+        width: 20,
+      }));
+
+      sheet.addRows(formatNullValues(data));
+    }
+
+    const buffer = await workbook.xlsx.writeBuffer();
+    return sendResponse(res, 200, {
+      data: {
+        payload: {
+          blob: buffer.toString("base64"),
+          performance: calculateStats(start, startUsage),
+        },
+        filename: `mayorality_export_excel_${Date.now()}.xlsx`,
+      },
+    });
+  } catch (error) {
+    console.error("Mayorality Excel Export Error:", error);
+    return sendResponse(res, 500, { message: "Error generating Excel file" });
+  }
+}
+
+/**
+ * Generates a single CSV file for mayoralities.
+ * @param {Object} res - Express response object.
+ * @param {URL} parsedUrl - The parsed request URL with q, sort, page, and limit parameters.
+ * @param {pg.Client} client - The PostgreSQL client instance.
+ * @returns {Promise&lt;void>}
+ */
+export async function exportCsvMayoralityHandler(res, parsedUrl, client) {
+  const start = performance.now();
+  const startUsage = process.cpuUsage();
+
+  const q = parsedUrl.searchParams.get("q")?.trim() ?? "";
+  const sort = parsedUrl.searchParams.get("sort")?.trim() ?? "";
+  const fromDate = parsedUrl.searchParams.get("fromDate") || null;
+  const toDate = parsedUrl.searchParams.get("toDate") || null;
+
+  const filters = {
+    center_ekatte: parsedUrl.searchParams.get("center_ekatte") || null,
+    center_name: parsedUrl.searchParams.get("center_name") || null,
+    mayorality_id: parsedUrl.searchParams.get("mayorality_id") || null,
+    mayorality_name: parsedUrl.searchParams.get("mayorality_name") || null,
+    municipality_name: parsedUrl.searchParams.get("municipality_name") || null,
+    region_name: parsedUrl.searchParams.get("region_name") || null,
+  };
+
+  try {
+    const rawData = await mayoralityModel.getMayoralityStats(client, {
+      q,
+      sort,
+      limit: null,
+      offset: 0,
+      fromDate,
+      toDate,
+      filters
+    });
+    const data = formatNullValues(rawData);
+    let csvContent = "";
+
+    const columnMapping = [
+      { key: "center_ekatte", header: "Ekatte" },
+      { key: "center_name", header: "Име на център" },
+      { key: "mayorality_id", header: "Код на кметство" },
+      { key: "mayorality_name", header: "Име на кметство" },
+      { key: "municipality_name", header: "Община" },
+      { key: "region_name", header: "Област" },
+      { key: "mayorality_last_change", header: "Промяна" },
+    ];
+
+    if (data.length > 0) {
+      const headerRow = columnMapping.map((m) => m.header).join(",");
+      const rows = data
+        .map((item) =>
+          columnMapping
+            .map((m) => {
+              const value = item[m.key] ?? "";
+              const escaped = String(value).replace(/"/g, '""');
+              return `"${escaped}"`;
+            })
+            .join(",")
+        )
+        .join("\n");
+
+      const BOM = "\uFEFF";
+      csvContent = BOM + headerRow + "\n" + rows;
+    }
+
+    return sendResponse(res, 200, {
+      data: {
+        payload: {
+          blob: Buffer.from(csvContent, "utf8").toString("base64"),
+          performance: calculateStats(start, startUsage),
+        },
+        filename: `mayorality_export_csv_${Date.now()}.csv`,
+      },
+    });
+  } catch (error) {
+    console.error("Mayorality CSV Export Error:", error);
+    return sendResponse(res, 500, { message: "Error generating CSV file" });
+  }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Tue Jan 13 2026 14:30:59 GMT+0200 (Eastern European Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+<script src="scripts/collapse.js" defer></script>
+
+
+</body>
+</html>

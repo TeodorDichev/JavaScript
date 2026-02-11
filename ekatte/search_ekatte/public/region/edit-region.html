@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8" />
+  <title>Редакция на област</title>
+  <link rel="stylesheet" href="../static/styles/edit.css" />
+  <link rel="stylesheet" href="../static/styles/side-menu.css" />
+  <link rel="stylesheet" href="../static/styles/errors.css" />
+</head>
+<body>
+  <div class="layout">
+    [[[SIDE_MENU]]]
+    <div id="error-container"></div>
+
+    <div class="container">
+      <h1>Редакция на област</h1>
+
+      <form id="update-region-form">
+        <div class="update-grid-container">
+          <div class="grid-col-header">Текущи данни</div>
+          <div class="grid-col-header">Нова версия</div>
+
+          <div class="form-group">
+            <label>Код</label>
+            <input type="text" id="old-id" disabled />
+          </div>
+          <div class="form-group">
+            <label>Идентификатор</label>
+            <input type="text" id="display-id" disabled />
+          </div>
+
+          <div class="form-group">
+            <label>Име</label>
+            <input type="text" id="old-name" disabled />
+          </div>
+          <div class="form-group">
+            <label>Ново име*</label>
+            <input type="text" id="name" required />
+          </div>
+
+          <div class="form-group">
+            <label>Транслитерация</label>
+            <input type="text" id="old-translit" disabled />
+          </div>
+          <div class="form-group">
+            <label>Нова транслитерация*</label>
+            <input type="text" id="translit" required />
+          </div>
+
+        <div class="form-group">
+            <label>NUTs3</label>
+            <input type="text" id="old-nuts3" disabled />
+          </div>
+          <div class="form-group">
+            <label>NUTs3*</label>
+            <input type="text" id="nuts3" required />
+          </div>
+
+          <div class="form-group">
+            <label>Брой населени места в областта</label>
+            <input type="text" id="m-settlements-count" disabled />
+          </div>
+          <div class="form-group">
+            <label>Брой кметства в областта</label>
+            <input type="text" id="m-mayoralities-count" disabled />
+          </div>
+          <div class="form-group">
+            <label>Брой общини в областта</label>
+            <input type="text" id="m-municipalities-count" disabled />
+          </div>
+        </div>
+
+        <div class="danger-section">
+            <h3>Териториална принадлежност и център</h3>
+            
+            <div class="update-grid-container">
+                <div class="form-group">
+                    <label>Текущо селище-център</label>
+                    <input type="text" id="old-center-settlement" disabled />
+                </div>
+                <div class="form-group autocomplete-wrapper">
+                    <p class="warning-text">
+                      Внимание: За нов център може да избирате от населени места в областта!
+                    </p>
+                    <label>Ново селище-център*</label>
+                    <input type="text" id="center-input" autocomplete="off" />
+                    <div class="autocomplete-box" id="center-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Запази промените</button>
+      </form>
+    </div>
+  </div>
+  <script src="../static/scripts/components/side-menu.js"></script>
+  <script type="module" src="../static/scripts/pages/region/edit-region.js"></script>
+</body>
+</html>

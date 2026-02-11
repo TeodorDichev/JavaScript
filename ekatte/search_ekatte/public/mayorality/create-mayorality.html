@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8" />
+  <title>Добавяне на кметство с център</title>
+  <link rel="stylesheet" href="../static/styles/create.css" />
+  <link rel="stylesheet" href="../static/styles/side-menu.css" />
+  <link rel="stylesheet" href="../static/styles/errors.css" />
+</head>
+<body>
+  <div class="layout">
+    [[[SIDE_MENU]]]
+    <div id="error-container"></div>
+
+    <div class="container">
+      <h1>Добавяне на кметство с център</h1>
+
+      <form id="mayorality-form">
+        <div class="form-group">
+          <label>EKATTE код (5 цифри)*</label>
+          <input type="text" id="ekatte" maxlength="5" required />
+          <span id="ekatteMessage"></span>
+        </div>
+
+        <div class="form-group">
+          <label>Име*</label>
+          <input type="text" id="name" required />
+        </div>
+
+        <div class="form-group">
+          <label>Транслитерация*</label>
+          <input type="text" id="translit" required />
+        </div>
+
+        <div class="form-group">
+          <label>Категория*</label>
+          <input type="number" id="category" min="1" required />
+        </div>
+
+        <div class="form-group">
+          <label>Тип*</label>
+          <select id="type" required></select>
+        </div>
+
+        <div class="form-group">
+          <label>Надморска височина*</label>
+          <select id="altitude" required></select>
+        </div>
+
+        <div class="form-group autocomplete-wrapper">
+          <label>Община*</label>
+          <input type="text" id="municipality-input" autocomplete="off" required />
+          <div class="autocomplete-box" id="municipality-list"></div>
+        </div>
+
+        <div class="form-group">
+          <label>Код на кметство (2 цифри)*</label>
+          <input type="text" id="mayorality-code" maxlength="2" required />
+          <span id="mayoralityMessage"></span>
+        </div>
+
+        <button type="submit" class="submit-btn">Запази</button>
+      </form>
+    </div>
+  </div>
+  <script src="../static/scripts/components/side-menu.js"></script>
+  <script type="module" src="../static/scripts/pages/mayorality/create-mayorality.js"></script>
+</body>
+</html>

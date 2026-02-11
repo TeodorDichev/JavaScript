@@ -1,16 +1,8 @@
-import { client } from "./startUp.js";
-
-export function chunkArray(arr, size) {
-  const chunks = [];
-  for (let i = 0; i < arr.length; i += size) chunks.push(arr.slice(i, i + size));
-  return chunks;
-}
-
 export function normalizeMayoralityId(mayoralityId) { 
   return mayoralityId.endsWith("-00") ? null : mayoralityId; 
 }
 
-export async function batchInsert(table, columns, rows, dbpool = client) {
+export async function prepareInsert(table, columns, rows, dbClient) {
   if (!rows.length) return;
 
   const placeholders = [];
@@ -31,13 +23,5 @@ export async function batchInsert(table, columns, rows, dbpool = client) {
     ON CONFLICT DO NOTHING
   `;
 
-  try {
-    await dbpool.query("BEGIN");
-    await dbpool.query(sql, values);
-    await dbpool.query("COMMIT");
-    console.log(`${table} inserted successfully (${rows.length} rows)`);
-  } catch (err) {
-    await dbpool.query("ROLLBACK");
-    console.error(`Failed to insert into ${table}, rolled back:`, err.message);
-  }
+  await dbClient.query(sql, values);
 }

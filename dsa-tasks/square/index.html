@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Canvas Lines</title>
+    <style>
+      #topBar {
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 5px;
+      }
+      #canvasContainer {
+        margin-top: 20px;
+      }
+      input[type="text"] {
+        width: 100px;
+      }
+      #myCanvas {
+        border: 1px solid #000;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="topBar">
+      A: <input type="text" id="a" />
+      <button id="submit">Submit</button>
+      Longest: <input type="text" id="longestLine" disabled /> Sizes:
+      <input type="text" id="sizesCount" disabled />
+    </div>
+
+    <canvas id="myCanvas"></canvas>
+
+    <script src="solution.js"></script>
+  </body>
+</html>

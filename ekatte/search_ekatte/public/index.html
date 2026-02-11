@@ -3,36 +3,67 @@
   <head>
     <meta charset="utf-8" />
     <title>Index</title>
-    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="./static/styles/layout.css" />
+    <link rel="stylesheet" href="./static/styles/components.css" />
+    <link rel="stylesheet" href="./static/styles/table.css" />
+    <link rel="stylesheet" href="./static/styles/side-menu.css" />
+    <link rel="stylesheet" href="./static/styles/pagination.css" />
+    <link rel="stylesheet" href="./static/styles/errors.css" />
   </head>
   <body>
-    <div class="container">
-      <h1>Търси селище по дума</h1>
-      <div class="search-box">
-        <img src="files/lupa.png" alt="lupa" />
-        <input type="text" id="search-data"/>
-      </div>
+    <div class="layout">
+      [[[SIDE_MENU]]]
+      <div id="error-container"></div>
+      
+      <div class="container">
+        <div class="header-row">
+          <h1>EKATTE</h1>
+        </div>
 
-      <h2 id="res-header">Резултати</h2>
-      <div id="result-count"></div>
-      <div class="table-wrapper">
-        <table class="result-table">
-          <thead>
-            <tr>
-              <th>Ekatte</th>
-              <th>Селище</th>
-              <th>Кметство</th>
-              <th>Община</th>
-              <th>Област</th>
-            </tr>
-          </thead>
-          <tbody>
-            
-          </tbody>
-        </table>
+        <div class="toolbar">
+            <div class="search-box">
+                <img src="/files/lupa.png" alt="search" />
+                <span>Търсене:</span>
+                <input type="text" id="search-data" placeholder="Въведете дума..." />
+            </div>
+        </div>
+
+        <h2 id="res-header">Резултати</h2>
+        <div id="result-count"></div>
+
+        <div class="table-wrapper">
+          <table class="result-table">
+            <thead>
+              <tr>
+                <th class="sortable" data-col="ekatte">Ekatte <span class="sort-icon"></span></th>
+                <th class="sortable" data-col="settlement_name">Селище <span class="sort-icon"></span></th>
+                <th class="sortable" data-col="mayorality_name">Кметство <span class="sort-icon"></span></th>
+                <th class="sortable" data-col="municipality_name">Община <span class="sort-icon"></span></th>
+                <th class="sortable" data-col="region_name">Област <span class="sort-icon"></span></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+          <div class="pagination-bar">
+              <div class="limit-selector">
+                  <span>Покажи:</span>
+                  <select id="page-limit">
+                      <option value="10">10</option>
+                      <option value="20" selected>20</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                  </select>
+              </div>
+              
+              <div id="pagination-bottom" class="pagination-buttons"></div>
+          </div>
+
       </div>
     </div>
 
-    <script type="module" src="scripts/index.js"></script>
+    <script src="/scripts/components/side-menu.js"></script>
+    <script type="module" src="/scripts/pages/index.js"></script>
   </body>
 </html>
